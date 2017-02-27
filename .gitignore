@@ -12,7 +12,7 @@
 */bin/
 */gen/
 */out/
-*/target/
+/target
  
 # Gradle files
 .gradle/
