@@ -94,5 +94,26 @@
             <version>4.3.6.RELEASE</version>
         </dependency>
 
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.cocoon/cocoon-core &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.cocoon</groupId>-->
+            <!--<artifactId>cocoon-core</artifactId>-->
+            <!--<version>2.2.0</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.cocoon/cocoon-spring-configurator &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.cocoon</groupId>-->
+            <!--<artifactId>cocoon-spring-configurator</artifactId>-->
+            <!--<version>2.2.1</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.apache.cocoon/cocoon-servlet-service-components -->
+        <dependency>
+            <groupId>org.apache.cocoon</groupId>
+            <artifactId>cocoon-servlet-service-components</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
     </dependencies>
 </project>
