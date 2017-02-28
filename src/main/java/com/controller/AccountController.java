@@ -1,4 +1,4 @@
-package controller;
+package com.controller;
 
 /**
  * Created by Sena on 2017/2/28.
