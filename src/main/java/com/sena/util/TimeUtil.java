@@ -1,6 +1,6 @@
-package com.util;
+package com.sena.util;
 
-import com.exception.SenaThrowRunTimeException;
+import com.sena.exception.SenaThrowRunTimeException;
 import org.joda.time.*;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;

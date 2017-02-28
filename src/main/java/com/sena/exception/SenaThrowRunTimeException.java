@@ -1,4 +1,4 @@
-package com.exception;
+package com.sena.exception;
 
 /**
  * Created by Shaow on 2017/2/28.

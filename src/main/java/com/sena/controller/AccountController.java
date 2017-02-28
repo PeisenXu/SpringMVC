@@ -1,4 +1,4 @@
-package com.controller;
+package com.sena.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

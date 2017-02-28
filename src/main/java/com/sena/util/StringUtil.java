@@ -1,4 +1,4 @@
-package com.util;
+package com.sena.util;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.util;
+package com.sena.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
