@@ -51,6 +51,14 @@
             <version>0.7.0-alpha1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/c3p0/c3p0 也是一个JDBC-->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
