@@ -32,7 +32,7 @@ public class StringUtil {
      * @return
      */
     public static boolean isEmptyOrBlank(String s) {
-        return s == null || s.trim().isEmpty();
+        return s == null || (s.trim().length() == 0);
     }
 
     /**
