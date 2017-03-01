@@ -32,7 +32,7 @@ public class TimeUtil {
     private final static String dateFormat = "yyyy-MM-dd HH:mm:ss";
     private final static String dateFormatFull = "yyyy-MM-dd HH:mm:ss.SSS";
     private final static String formatMMddyyyy = "MMddyyyy";
-    private final static String[] dateFormats = new String[] {"MM/dd/yyyy", "yyyy/MM/dd", "MM-dd-yyyy", "yyyy-MM-dd", "M/dd/yyyy", "M/d/yyyy", "MM/d/yyyy"};
+    private final static String[] dateFormats = new String[]{"MM/dd/yyyy", "yyyy/MM/dd", "MM-dd-yyyy", "yyyy-MM-dd", "M/dd/yyyy", "M/d/yyyy", "MM/d/yyyy"};
     private static DateFormat format = new SimpleDateFormat(dateFormat);
     private static Logger logger = LoggerFactory.getLogger(TimeUtil.class);
 
@@ -71,8 +71,10 @@ public class TimeUtil {
 
     private static final String separator1 = "/";
     private static final String separator2 = "-";
+
     /**
      * 只解析日期部分
+     *
      * @return
      */
     public static Date parseDate(String s) {
@@ -83,7 +85,7 @@ public class TimeUtil {
             separator = separator1;
         else if (s.contains(separator2))
             separator = separator2;
-        if (StringUtil.isEmptyOrBlank(separator)  || s.split(separator).length < 3)
+        if (StringUtil.isEmptyOrBlank(separator) || s.split(separator).length < 3)
             throw new UnsupportedOperationException("Unsupported date format.");
 
         strs = s.split(separator);
@@ -95,8 +97,8 @@ public class TimeUtil {
             }
         }
         if (index == 3) {
-            format = String.format("%s"+separator+"%s"+separator+"%s","MM","dd","yy");
-        }else {
+            format = String.format("%s" + separator + "%s" + separator + "%s", "MM", "dd", "yy");
+        } else {
             if (index == 0)
                 format = String.format("%s" + separator + "%s" + separator + "%s", "yyyy", "MM", "dd");
             if (index == 2)
@@ -104,7 +106,7 @@ public class TimeUtil {
         }
         if (StringUtil.isEmptyOrBlank(format))
             throw new UnsupportedOperationException("Unsupported date format.");
-        return parse(s,format);
+        return parse(s, format);
     }
 
     /**
@@ -154,6 +156,7 @@ public class TimeUtil {
 
     /**
      * 判断日期年份是否正确
+     *
      * @param date
      * @return
      */
@@ -205,8 +208,9 @@ public class TimeUtil {
     }
 
     public static DateTimeFormatter dateTimeFormat = DateTimeFormat.forPattern("yyyyMMdd");
+
     public static boolean timeBetweenFromTo(DateTime time, DateTime from, DateTime to) {
-        if((from.isBefore(time) || dateTimeFormat.print(from).equals(dateTimeFormat.print(time)))&&
+        if ((from.isBefore(time) || dateTimeFormat.print(from).equals(dateTimeFormat.print(time))) &&
                 (to.isAfter(time) || dateTimeFormat.print(to).equals(dateTimeFormat.print(time)))) {
             return true;
         }
@@ -223,6 +227,7 @@ public class TimeUtil {
 
     /**
      * 判断两个时间的日期部分是否相同
+     *
      * @param date1
      * @param date2
      * @return
@@ -244,7 +249,7 @@ public class TimeUtil {
             parse(dateStr, format);
             return true;
         } catch (SenaThrowRunTimeException e) {
-            if (e.getCause() instanceof ParseException ) {
+            if (e.getCause() instanceof ParseException) {
                 return false;
             }
             throw e;
@@ -253,6 +258,7 @@ public class TimeUtil {
 
     /**
      * 判断字符串是否是日期格式
+     *
      * @param dateStr
      * @return
      */
@@ -262,7 +268,7 @@ public class TimeUtil {
             try {
                 parse(dateStr, format);
             } catch (Exception e) {
-                time ++;
+                time++;
             }
         }
         return time < dateFormats.length;
@@ -270,6 +276,7 @@ public class TimeUtil {
 
     /**
      * 通过出生日期计算年龄
+     *
      * @param birthday
      * @return
      */
@@ -306,6 +313,7 @@ public class TimeUtil {
         }
         return age;
     }
+
     /**
      * 计算学生的年龄
      *
@@ -319,8 +327,7 @@ public class TimeUtil {
         Long completed;
         if (StringUtil.isEmptyOrBlank(completedDate)) {
             completed = TimeUtil.getNow().getTime();
-        }
-        else {
+        } else {
             completed = TimeUtil.parseDate(completedDate).getTime();
         }
         Date birthday = TimeUtil.parseDate(birthDate);
@@ -342,26 +349,28 @@ public class TimeUtil {
         int year = ageMonth / 12;
         int month = ageMonth % 12;
         String result = "";
-        if (year > 0){
+        if (year > 0) {
             result += year;
-            if (year == 1 ){
-                result +=  " year ";
-            }else {
-                result +=  " years ";
+            if (year == 1) {
+                result += " year ";
+            } else {
+                result += " years ";
             }
         }
-        if (month > 0){
+        if (month > 0) {
             result += month;
-            if (month == 1){
+            if (month == 1) {
                 result += " month";
-            }else {
+            } else {
                 result += " months";
             }
         }
         return result.trim();
     }
+
     /**
      * 通过生日计算年龄（按月份）
+     *
      * @param from
      * @param to
      * @return
@@ -382,7 +391,7 @@ public class TimeUtil {
         int month = toMonth - fromMonth;
 
         if (toDay < fromDay)
-            month --;
+            month--;
         return year * 12 + month;
     }
 
@@ -396,6 +405,7 @@ public class TimeUtil {
 
     /**
      * 将UTC时间转成指定时区的时间
+     *
      * @param utcDate
      * @param timezone
      * @return
@@ -411,13 +421,13 @@ public class TimeUtil {
      * <code>toTimeZone</code>.  Since java.util.Date has does not really store time zome
      * information, this actually converts the date to the date that it would be in the
      * other time zone.
+     *
      * @param date
      * @param fromTimeZone
      * @param toTimeZone
      * @return
      */
-    public static Date convertTimeZone(Date date, TimeZone fromTimeZone, TimeZone toTimeZone)
-    {
+    public static Date convertTimeZone(Date date, TimeZone fromTimeZone, TimeZone toTimeZone) {
         long fromTimeZoneOffset = getTimeZoneUTCAndDSTOffset(date, fromTimeZone);
         long toTimeZoneOffset = getTimeZoneUTCAndDSTOffset(date, toTimeZone);
 
@@ -428,15 +438,14 @@ public class TimeUtil {
      * Calculates the offset of the <code>timeZone</code> from UTC, factoring in any
      * additional offset due to the time zone being in daylight savings time as of
      * the given <code>date</code>.
+     *
      * @param date
      * @param timeZone
      * @return
      */
-    private static long getTimeZoneUTCAndDSTOffset(Date date, TimeZone timeZone)
-    {
+    private static long getTimeZoneUTCAndDSTOffset(Date date, TimeZone timeZone) {
         long timeZoneDSTOffset = 0;
-        if(timeZone.inDaylightTime(date))
-        {
+        if (timeZone.inDaylightTime(date)) {
             timeZoneDSTOffset = timeZone.getDSTSavings();
         }
 

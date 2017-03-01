@@ -2,14 +2,12 @@ package com.sena.controller;
 
 import com.sena.entity.UserEntity;
 import com.sena.model.UserResponse;
+import com.sena.result.Result;
 import com.sena.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -43,10 +41,10 @@ public class AccountController {
     }
 
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public UserResponse userLogin(UserResponse response) {
-        UserResponse users = accountService.getUserRespone(response);
-        return users;
+    public Result<UserResponse> userLogin(@RequestBody UserResponse response) {
+        Result<UserResponse> userResult = accountService.getUserRespone(response);
+        return userResult;
     }
 }
