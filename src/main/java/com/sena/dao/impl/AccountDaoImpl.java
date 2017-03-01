@@ -18,9 +18,18 @@ public class AccountDaoImpl implements AccountDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<UserEntity> testLogin() {
+    public List<UserEntity> getAllUser() {
         try {
             return jdbcTemplate.query(AccountUserMapper.SQL_SELECT_GETUSER, new Object[]{}, AccountUserMapper.MAPPER_AGENCY);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public UserEntity getUserByLogin(String userName, String password) {
+        try {
+            return jdbcTemplate.queryForObject(AccountUserMapper.SQL_SELECT_USER_BY_INFO, new Object[]{userName, userName, password}, AccountUserMapper.MAPPER_AGENCY);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

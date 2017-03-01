@@ -8,5 +8,6 @@ import java.util.List;
  * Created by Sena on 2017/2/28.
  */
 public interface AccountDao {
-    List<UserEntity> testLogin();
+    List<UserEntity> getAllUser();
+    UserEntity getUserByLogin(String userName, String password);
 }

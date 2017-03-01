@@ -67,6 +67,7 @@
         <property name="prefix" value="/WEB-INF/"></property>
         <property name="suffix" value=".html"></property>
     </bean>
+    <bean  id="exceptionHandler" class="com.aaa.bbb.exception.DefaultExceptionHandler" />
     <mvc:annotation-driven />
     <!-- Json处理 -->
 </beans>

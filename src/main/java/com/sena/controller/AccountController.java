@@ -1,5 +1,7 @@
 package com.sena.controller;
 
+import com.sena.entity.UserEntity;
+import com.sena.model.UserResponse;
 import com.sena.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,14 +37,16 @@ public class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/jsonHealthy", method = RequestMethod.GET)
     @ResponseBody
-    public List<String> jsonHealthy() {
-//        List<UserEntity> users = accountService.getUser();
-//        if (users.isEmpty()) {
-//            return null;
-//        }
-        List<String> list = new ArrayList<String>();
-        list.add("1");
-        list.add("2");
-        return list;
+    public List<UserEntity> jsonHealthy() {
+        List<UserEntity> users = accountService.getAllUser();
+        return users;
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @ResponseBody
+    public UserResponse userLogin(UserResponse response) {
+        UserResponse users = accountService.getUserRespone(response);
+        return users;
     }
 }
