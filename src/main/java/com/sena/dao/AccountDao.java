@@ -1,6 +1,7 @@
 package com.sena.dao;
 
 import com.sena.entity.UserEntity;
+import com.sena.exception.user.UserRegisterException;
 
 import java.util.List;
 
@@ -9,5 +10,8 @@ import java.util.List;
  */
 public interface AccountDao {
     List<UserEntity> getAllUser();
+
     UserEntity getUserByLogin(String userName, String password);
+
+    void createUser(String userName, String hashPassword, String email) throws UserRegisterException;
 }

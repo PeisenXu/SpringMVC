@@ -8,28 +8,19 @@ package com.sena.message;
  * @see
  */
 public class MessageInfo {
-    /**
-     * 成功
-     */
-    public static final int SUCCESS = 0;
-
-    /**
-     * 失败
-     */
-    public static final int FAILTURE = -1;
-
-    /**
-     * 接口返回成功消息
-     */
-
-    /**
-     * 登录成功
-     */
-    public static final String USER_LOGIN_SUCCESS = "登录成功";
-
     /*********************************************************
      * 系统错误码和消息 100001-199999
      ****************************/
+
+    /**
+     * MD5加密失败
+     */
+    public static final int SYSTEM_MD5_CREATE_ERRO = 100001;
+
+    /**
+     * 添加用户失败
+     */
+    public static final int SYSTEM_CREATE_USER_ERRO_ERRO = 100002;
 
     /*********************************************************
      * 用户错误码和消息 200001-299999
@@ -39,21 +30,20 @@ public class MessageInfo {
      */
     public static final int USER_LOGINNAME_IS_NULL_CODE = 200001;
 
-    public static final String USER_LOGINNAME_IS_NULL_MESSAGE = "请输入登录名";
-
     /**
      * 请输入密码
      */
     public static final int USER_PASSWORD_IS_NULL_CODE = 200002;
-
-    public static final String USER_PASSWORD_IS_NULL_MESSAGE = "请输入密码";
 
     /**
      * 用户名或密码错误
      */
     public static final int USER_LOGIN_ERROR_CODE = 200003;
 
-    public static final String USER_LOGIN_ERROR_MESSAGE = "用户名或密码错误";
+    /**
+     * 请输入邮箱
+     */
+    public static final int USER_EMAIL_IS_NULL_CODE = 200004;
 
     /*********************************************************
      * 业务错误码和消息 300001-399999

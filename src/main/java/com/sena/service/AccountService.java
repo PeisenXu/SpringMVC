@@ -13,4 +13,6 @@ public interface AccountService {
     List<UserEntity> getAllUser();
 
     Result<UserResponse> getUserRespone(UserResponse response);
+
+    Result<String> createUser(UserResponse response);
 }

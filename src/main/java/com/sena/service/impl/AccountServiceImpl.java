@@ -2,10 +2,13 @@ package com.sena.service.impl;
 
 import com.sena.dao.AccountDao;
 import com.sena.entity.UserEntity;
+import com.sena.exception.system.Md5CanNotCreateException;
+import com.sena.exception.user.UserRegisterException;
 import com.sena.message.MessageInfo;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 import com.sena.service.AccountService;
+import com.sena.util.MD5;
 import com.sena.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +36,14 @@ public class AccountServiceImpl implements AccountService {
         if (StringUtil.isEmptyOrBlank(response.getPassword())) {
             return Result.result(MessageInfo.USER_PASSWORD_IS_NULL_CODE, "Please input a password.");
         }
-        UserEntity user = accountDao.getUserByLogin(response.getUserName(), response.getPassword());
+        //MD5加密密码判断
+        String hashPassword = "";
+        try {
+            hashPassword = MD5.getMd5(response.getPassword());
+        } catch (Md5CanNotCreateException e) {
+            return Result.result(MessageInfo.SYSTEM_MD5_CREATE_ERRO, "Encryption failed.");
+        }
+        UserEntity user = accountDao.getUserByLogin(response.getUserName(), hashPassword);
         if (user == null) {
             return Result.result(MessageInfo.USER_LOGIN_ERROR_CODE, "Login failed, please check your account or password.");
         }
@@ -42,6 +52,33 @@ public class AccountServiceImpl implements AccountService {
         userResponse.setUserName(user.getUserName());
         userResponse.setId(user.getId());
         return Result.result(userResponse);
+    }
+
+    @Override
+    public Result<String> createUser(UserResponse response) {
+        if (StringUtil.isEmptyOrBlank(response.getUserName())) {
+            return Result.result(MessageInfo.USER_LOGINNAME_IS_NULL_CODE, "Please input a account.");
+        }
+        if (StringUtil.isEmptyOrBlank(response.getPassword())) {
+            return Result.result(MessageInfo.USER_PASSWORD_IS_NULL_CODE, "Please input a password.");
+        }
+        if (StringUtil.isEmptyOrBlank(response.getEmail())) {
+            return Result.result(MessageInfo.USER_EMAIL_IS_NULL_CODE, "Please input a email.");
+        }
+        //MD5加密密码
+        String hashPassword = "";
+        try {
+            hashPassword = MD5.getMd5(response.getPassword());
+        } catch (Md5CanNotCreateException e) {
+            return Result.result(MessageInfo.SYSTEM_MD5_CREATE_ERRO, "Encryption failed.");
+        }
+
+        try {
+            accountDao.createUser(response.getUserName(), hashPassword, response.getEmail());
+        } catch (UserRegisterException e) {
+            return Result.result(MessageInfo.SYSTEM_CREATE_USER_ERRO_ERRO, "Cant't Create User.");
+        }
+        return Result.result(null);
     }
 
 
