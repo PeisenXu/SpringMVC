@@ -67,6 +67,6 @@
         <property name="prefix" value="/WEB-INF/"></property>
         <property name="suffix" value=".html"></property>
     </bean>
-
+    <mvc:annotation-driven />
     <!-- Json处理 -->
 </beans>
