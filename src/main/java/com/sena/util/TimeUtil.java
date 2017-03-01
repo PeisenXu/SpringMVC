@@ -14,7 +14,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-
+/**
+ * Created by Sena on 2017/2/28.
+ */
 public class TimeUtil {
     public final static String format1 = "MM/dd/yyyy HH:mm:ss.SSS";
     public final static String format2 = "yyyy-MM-dd HH:mm:ss.SSS";

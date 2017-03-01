@@ -6,6 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+/**
+ * Created by Sena on 2017/2/28.
+ */
 public class JsonUtil {
     private static Gson gson = new Gson();
 

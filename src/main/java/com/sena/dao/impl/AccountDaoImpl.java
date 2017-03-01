@@ -4,10 +4,10 @@ import com.sena.dao.AccountDao;
 import com.sena.entity.UserEntity;
 import com.sena.mapper.AccountUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,12 +19,9 @@ public class AccountDaoImpl implements AccountDao {
     private JdbcTemplate jdbcTemplate;
 
     public List<UserEntity> testLogin() {
-        List<UserEntity> users = new ArrayList<UserEntity>();
-        String sql = "select * from account_user";
         try {
-            users = jdbcTemplate.query(AccountUserMapper.SQL_SELECT_GETUSER, new Object[]{}, AccountUserMapper.MAPPER_AGENCY);
-            return users;
-        } catch (Exception e) {
+            return jdbcTemplate.query(AccountUserMapper.SQL_SELECT_GETUSER, new Object[]{}, AccountUserMapper.MAPPER_AGENCY);
+        } catch (EmptyResultDataAccessException e) {
             return null;
         }
     }

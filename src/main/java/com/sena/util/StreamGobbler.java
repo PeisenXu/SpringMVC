@@ -3,7 +3,7 @@ package com.sena.util;
 import java.io.*;
 
 /**
- * Created by haoran on 2016/10/18.
+ * Created by Sena on 2016/10/18.
  */
 // http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
 public class StreamGobbler extends Thread {

@@ -1,10 +1,12 @@
 package com.sena.util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Created by Sena on 2017/2/28.
+ */
 public class StringUtil {
     public static String subCompletedSentence(String text, int maxLength) {
         if (text == null)

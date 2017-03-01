@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * 集合操作工具类
- * Created by starsli on 2016/8/26.
+ * Created by Sena on 2016/8/26.
  */
 public class CollectionUtil {
     /**
