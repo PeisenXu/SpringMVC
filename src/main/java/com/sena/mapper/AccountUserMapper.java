@@ -9,18 +9,29 @@ import java.sql.SQLException;
 /**
  * Created by Sena on 2017/2/28.
  */
-public class AccountUserMapper implements RowMapper<UserEntity> {
-    private String ID = "Id";
-    private String USERNAME = "UserName";
-    private String HASHPASSWORD = "HashPassword";
-    private String EMAIL = "Email";
+public class AccountUserMapper {
+    //region Column
+    private static String ID = "Id";
+    private static String USERNAME = "UserName";
+    private static String HASHPASSWORD = "HashPassword";
+    private static String EMAIL = "Email";
+    //endregion
 
-    public UserEntity mapRow(ResultSet rs, int i) throws SQLException {
-        UserEntity user = new UserEntity();
-        user.setId(rs.getInt(ID));
-        user.setUserName(rs.getString(USERNAME));
-        user.setHashPassword(rs.getString(HASHPASSWORD));
-        user.setEmail(rs.getString(EMAIL));
-        return user;
-    }
+    //region Sql
+    public static final String SQL_SELECT_GETUSER = "SELECT * FROM account_user";
+    //endregion
+
+    //region mapper
+    public static final RowMapper<UserEntity> MAPPER_AGENCY = new RowMapper<UserEntity>() {
+        @Override
+        public UserEntity mapRow(ResultSet rs, int i) throws SQLException {
+            UserEntity user = new UserEntity();
+            user.setId(rs.getInt(ID));
+            user.setUserName(rs.getString(USERNAME));
+            user.setHashPassword(rs.getString(HASHPASSWORD));
+            user.setEmail(rs.getString(EMAIL));
+            return user;
+        }
+    };
+    //endregion
 }

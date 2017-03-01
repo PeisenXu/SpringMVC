@@ -22,12 +22,10 @@ public class AccountDaoImpl implements AccountDao {
         List<UserEntity> users = new ArrayList<UserEntity>();
         String sql = "select * from account_user";
         try {
-            users = jdbcTemplate.query(sql, new AccountUserMapper());
+            users = jdbcTemplate.query(AccountUserMapper.SQL_SELECT_GETUSER, new Object[]{}, AccountUserMapper.MAPPER_AGENCY);
+            return users;
         } catch (Exception e) {
             return null;
-        } finally {
-
-            return users;
         }
     }
 }
