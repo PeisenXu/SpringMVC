@@ -58,8 +58,8 @@
 
     <!--&lt;!&ndash; 配置视图解析器，将ModelAndView及字符串解析为具体的页面 &ndash;&gt;-->
     <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"-->
-          <!--p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/WEB-INF/jsp/"-->
-          <!--p:suffix=".jsp"/>-->
+    <!--p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/WEB-INF/jsp/"-->
+    <!--p:suffix=".jsp"/>-->
 
     <!-- 视图解析器 -->
     <bean id="viewResolver"
@@ -68,5 +68,22 @@
         <property name="suffix" value=".html"></property>
     </bean>
 
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJackson2HttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    <bean id="mappingJackson2HttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+                <value>text/json;charset=UTF-8</value>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>
