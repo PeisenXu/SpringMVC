@@ -3,7 +3,7 @@
     <display-name>AutoTest</display-name>
     <!-- session失效时间 -->
     <session-config>
-        <session-timeout>180</session-timeout>
+        <session-timeout>60</session-timeout>
     </session-config>
 
     <!-- encode -->
@@ -24,6 +24,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+
     <!-- 配置总控制器 -->
     <servlet>
         <servlet-name>springmvc</servlet-name>
@@ -40,7 +41,7 @@
         <url-pattern>*.sena</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>view/index.html</welcome-file>
+        <welcome-file>/api/v1/account/index.sena</welcome-file>
     </welcome-file-list>
 
 </web-app>
