@@ -28,7 +28,7 @@ public class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView healthyCheck() {
-        ModelAndView modelAndView = new ModelAndView("view/index");
+        ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
 
