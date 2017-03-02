@@ -35,9 +35,9 @@ public class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/jsonHealthy", method = RequestMethod.GET)
     @ResponseBody
-    public List<UserEntity> jsonHealthy() {
+    public Result<List<UserEntity>> jsonHealthy() {
         List<UserEntity> users = accountService.getAllUser();
-        return users;
+        return Result.result(users);
     }
 
     @ResponseStatus(value = HttpStatus.OK)

@@ -7,22 +7,72 @@
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/tether.min.js"></script>
     <script src="js/bootstrap.js"></script>
+    <style>
+        #myAlert {
+            position: fixed;
+            bottom: 0px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-<div class="col-sm-9 col-md-9">
-<div class="form-group">
-    <i class="fa fa-user fa-lg"></i>
-    <input class="form-control required" type="text" placeholder="Username" name="username" autofocus="autofocus"/>
+<div class="col-sm-5">
+    <div class="reg_submit" style="padding: 100px 100px 10px;">
+        <form class="bs-example bs-example-form" role="form">
+            <div class="input-group">
+                <span class="input-group-addon">Account</span>
+                <input type="text" class="form-username" placeholder="*********">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon">Password</span>
+                <input type="text" class="form-password" placeholder="*********">
+            </div>
+            <br>
+            <button id="reg-button" type="button" data-loading-text="test...." class="btn btn-primary"
+                    autocomplete="off" data-toggle="buttons">注册
+            </button>
+        </form>
+    </div>
 </div>
-<div class="form-group">
-    <i class="fa fa-lock fa-lg"></i>
-    <input class="form-control required" type="password" placeholder="Password" id="register_password" name="password"/>
+
+<div id="myAlert" class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>警告！</strong>您的网络连接有问题。
 </div>
-<div class="form-group">
-    <i class="fa fa-check fa-lg"></i>
-    <input class="form-control required" type="password" placeholder="Re-type Your Password" name="rpassword"/>
-</div>
-    <a href="index.html">test</a>
-</div>
+<script>
+    $(function () {
+        $("#reg-button").on("click", function () {
+            var that = $(this);
+            setTimeout(function () {
+                that.text(that.attr("data-loading-text"))
+            }, 0);
+            var username = $(".form-username").val();
+            var password = $(".form-password").val();
+            var formdata = {
+                "userName" : username,
+                "password" : password
+            };
+            $.ajax({
+                type: "POST",
+                url: "/api/v1/account/login.sena",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(formdata),
+                dataType: "json",
+                success: function (message) {
+                    alert(message);
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("提交数据失败！");
+                }
+            });
+        })
+    })
+</script>
+
 </body>
 </html>
