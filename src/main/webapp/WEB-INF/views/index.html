@@ -64,7 +64,10 @@
                 data: JSON.stringify(formdata),
                 dataType: "json",
                 success: function (message) {
-                    alert(message);
+                    if(message.code != 0){
+                        alert(message.message);
+                    }else{
+                    }
                 },
                 error: function (message) {
                     $("#request-process-patent").html("提交数据失败！");
