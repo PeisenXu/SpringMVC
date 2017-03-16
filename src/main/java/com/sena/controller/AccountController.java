@@ -46,13 +46,13 @@ public class AccountController {
     public Result<UserResponse> userLogin(@RequestBody UserResponse response) {
         Result<UserResponse> userResult = accountService.getUserRespone(response);
         return userResult;
-    }
+}
 
-    @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    @ResponseBody
-    public Result<String> userRegister(@RequestBody UserResponse response) {
+@ResponseStatus(value = HttpStatus.OK)
+@RequestMapping(value = "/register", method = RequestMethod.POST)
+@ResponseBody
+public Result<String> userRegister(@RequestBody UserResponse response) {
 
         return accountService.createUser(response);
-    }
-}
+        }
+        }

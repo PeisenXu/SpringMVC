@@ -24,16 +24,16 @@
     <div class="reg_submit" style="padding: 100px 100px 10px;">
         <form class="bs-example bs-example-form" role="form">
             <div class="input-group">
-                <span class="input-group-addon">Account</span>
-                <input type="text" class="form-username" placeholder="*********">
+                <span class="input-group-addon">账号</span>
+                <input type="text" class="form-username" placeholder="your account">
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-addon">Password</span>
-                <input type="text" class="form-password" placeholder="*********">
+                <span class="input-group-addon">密码</span>
+                <input type="password" class="form-password" placeholder="your password">
             </div>
             <br>
-            <button id="reg-button" type="button" data-loading-text="test...." class="btn btn-primary"
+            <button id="reg-button" type="button" data-loading-text="Loading...." class="btn btn-primary"
                     autocomplete="off" data-toggle="buttons">注册
             </button>
         </form>
@@ -48,14 +48,12 @@
     $(function () {
         $("#reg-button").on("click", function () {
             var that = $(this);
-            setTimeout(function () {
-                that.text(that.attr("data-loading-text"))
-            }, 0);
+            that.text(that.attr("data-loading-text"))
             var username = $(".form-username").val();
             var password = $(".form-password").val();
             var formdata = {
-                "userName" : username,
-                "password" : password
+                "userName": username,
+                "password": password
             };
             $.ajax({
                 type: "POST",
@@ -63,10 +61,12 @@
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(formdata),
                 dataType: "json",
-                success: function (message) {
-                    if(message.code != 0){
-                        alert(message.message);
-                    }else{
+                success: function (date) {
+                    if (date.code != 0) {
+                        alert(date.message);
+                    } else {
+                        var obj = date.data;
+                        alert(obj.id);
                     }
                 },
                 error: function (message) {
