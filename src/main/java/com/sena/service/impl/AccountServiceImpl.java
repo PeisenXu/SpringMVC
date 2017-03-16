@@ -5,6 +5,7 @@ import com.sena.entity.UserEntity;
 import com.sena.exception.system.Md5CanNotCreateException;
 import com.sena.exception.user.UserRegisterException;
 import com.sena.message.MessageInfo;
+import com.sena.model.EmailModel;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 import com.sena.service.AccountService;
@@ -24,7 +25,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountDao accountDao;
-
     @Autowired
     private EmailService emailService;
 
@@ -86,8 +86,31 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void sendEmail(String email) {
+    public Result<String> sendEmail() {
+        EmailModel emailModel = new EmailModel();
+        emailModel.setTo("75037664@qq.com");
+        emailModel.setMessageHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">  \n" +
+                "  \n" +
+                "<html xmlns=\"http://www.w3.org/1999/xhtml\">  \n" +
+                "  \n" +
+                "　<head>  \n" +
+                "  \n" +
+                "　　<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />  \n" +
+                "  \n" +
+                "　　<title>HTML Email编写指南</title>  \n" +
+                "  \n" +
+                "　　<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>  \n" +
+                "  \n" +
+                "　</head>  \n" +
+                "  \n" +
+                "</html>  ");
+        //emailModel.setAttachment("http://china-sen.oss-me-east-1.aliyuncs.com/1.pdf");
+        emailModel.setAttachment("D:\\gitignore_global.txt");
+        emailModel.setAttachmentName("gitignore_global.txt");
+        emailModel.setSubject("Title");
 
+        emailService.sendEmail(emailModel);
+        return Result.result(null);
     }
 
 }

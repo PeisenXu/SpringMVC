@@ -16,5 +16,5 @@ public interface AccountService {
 
     Result<String> createUser(UserResponse response);
 
-    void sendEmail(String email);
+    Result<String> sendEmail();
 }

@@ -22,6 +22,11 @@ public class MessageInfo {
      */
     public static final int SYSTEM_CREATE_USER_ERRO_ERRO = 100002;
 
+    /**
+     * 发送邮件失败
+     */
+    public static final int SYSTEM_SEND_EMAIL_ERRO = 100003;
+
     /*********************************************************
      * 用户错误码和消息 200001-299999
      ****************************/

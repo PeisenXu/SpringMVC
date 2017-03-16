@@ -38,6 +38,16 @@ public class StringUtil {
     }
 
     /**
+     * 判断字符串不为NULL或空字符串
+     *
+     * @param s
+     * @return
+     */
+    public static boolean isNotEmptyOrBlank(String s) {
+        return s != null || (!s.trim().isEmpty());
+    }
+
+    /**
      * 去除字符串中除了字母数字以外的标点符号
      * @param str
      * @return

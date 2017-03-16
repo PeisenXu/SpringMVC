@@ -49,7 +49,13 @@ public class AccountController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public Result<String> userRegister(@RequestBody UserResponse response) {
-
         return accountService.createUser(response);
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> sendEmail() {
+        return accountService.sendEmail();
     }
 }
