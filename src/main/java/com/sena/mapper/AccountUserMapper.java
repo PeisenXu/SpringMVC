@@ -20,7 +20,7 @@ public class AccountUserMapper {
     //region Sql
     public static final String SQL_SELECT_GETUSER = "SELECT * FROM account_user";
     public static final String SQL_SELECT_USER_BY_INFO = "SELECT * FROM account_user WHERE (UserName = ? OR Email = ?) AND HashPassword = ?";
-    public static final String SQL_INSERT_USER = "INSERT INTO account_user (UserName, HashPassword, Email) VALUE (?,?,?)";
+    public static final String SQL_INSERT_USER = "INSERT INTO account_user (UserName, HashPassword, Email, CreateDate, UpdateDate) VALUE (?,?,?,?,?)";
     //endregion
 
     //region mapper
