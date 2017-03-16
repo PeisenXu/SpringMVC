@@ -89,21 +89,9 @@ public class AccountServiceImpl implements AccountService {
     public Result<String> sendEmail() {
         EmailModel emailModel = new EmailModel();
         emailModel.setTo("75037664@qq.com");
-        emailModel.setMessageHtml("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">  \n" +
-                "  \n" +
-                "<html xmlns=\"http://www.w3.org/1999/xhtml\">  \n" +
-                "  \n" +
-                "　<head>  \n" +
-                "  \n" +
-                "　　<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />  \n" +
-                "  \n" +
-                "　　<title>HTML Email编写指南</title>  \n" +
-                "  \n" +
-                "　　<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>  \n" +
-                "  \n" +
-                "　</head>  \n" +
-                "  \n" +
-                "</html>  ");
+        emailModel.setMessageHtml("<br/><br/>------------------\n" +
+                "本邮件仅发给指定人员，邮件内容可能涉及保密信息，如果误发贵处请邮件通知发件人并删除此邮件，任何形式的复制、转发或散布本邮件及其内容均属违法行为。。\n" +
+                "The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it...");
         //emailModel.setAttachment("http://china-sen.oss-me-east-1.aliyuncs.com/1.pdf");
         emailModel.setAttachment("D:\\gitignore_global.txt");
         emailModel.setAttachmentName("gitignore_global.txt");
