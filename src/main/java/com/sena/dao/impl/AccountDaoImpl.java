@@ -4,6 +4,7 @@ import com.sena.dao.AccountDao;
 import com.sena.entity.UserEntity;
 import com.sena.exception.user.UserRegisterException;
 import com.sena.mapper.AccountUserMapper;
+import com.sena.util.TimeUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -40,7 +41,7 @@ public class AccountDaoImpl implements AccountDao {
     @Override
     public void createUser(String userName, String hashPassword, String email) throws UserRegisterException {
         try {
-            jdbcTemplate.update(AccountUserMapper.SQL_INSERT_USER, userName, hashPassword, email);
+            jdbcTemplate.update(AccountUserMapper.SQL_INSERT_USER, userName, hashPassword, email, TimeUtil.getUtcNow(), TimeUtil.getUtcNow());
         } catch (Exception e) {
             throw new UserRegisterException();
         }

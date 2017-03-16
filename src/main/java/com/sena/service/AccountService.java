@@ -15,4 +15,6 @@ public interface AccountService {
     Result<UserResponse> getUserRespone(UserResponse response);
 
     Result<String> createUser(UserResponse response);
+
+    void sendEmail(String email);
 }

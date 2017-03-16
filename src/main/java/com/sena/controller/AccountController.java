@@ -4,6 +4,7 @@ import com.sena.entity.UserEntity;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 import com.sena.service.AccountService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    /**
-     * Healthy check url
-     */
+    @ApiOperation(value = "Healthy check url")
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView healthyCheck() {
@@ -32,6 +31,7 @@ public class AccountController {
         return modelAndView;
     }
 
+    @ApiOperation(value = "获取所有用户")
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/jsonHealthy", method = RequestMethod.GET)
     @ResponseBody
@@ -40,6 +40,7 @@ public class AccountController {
         return Result.result(users);
     }
 
+    @ApiOperation(value = "登陆接口")
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
@@ -48,6 +49,7 @@ public class AccountController {
         return userResult;
     }
 
+    @ApiOperation(value = "注册接口")
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody

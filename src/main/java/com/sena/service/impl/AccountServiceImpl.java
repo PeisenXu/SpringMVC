@@ -8,6 +8,7 @@ import com.sena.message.MessageInfo;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 import com.sena.service.AccountService;
+import com.sena.service.EmailService;
 import com.sena.util.MD5;
 import com.sena.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountDao accountDao;
+
+    @Autowired
+    private EmailService emailService;
 
     public List<UserEntity> getAllUser() {
         return accountDao.getAllUser();
@@ -81,5 +85,9 @@ public class AccountServiceImpl implements AccountService {
         return Result.result(null);
     }
 
+    @Override
+    public void sendEmail(String email) {
+
+    }
 
 }
