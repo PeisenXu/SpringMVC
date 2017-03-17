@@ -1,6 +1,7 @@
 package com.sena.controller;
 
 import com.sena.entity.UserEntity;
+import com.sena.model.EmailModel;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 import com.sena.service.AccountService;
@@ -53,9 +54,9 @@ public class AccountController {
     }
 
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
     @ResponseBody
-    public Result<String> sendEmail() {
-        return accountService.sendEmail();
+    public Result<String> sendEmail(@RequestBody EmailModel emailModel) {
+        return accountService.sendEmail(emailModel);
     }
 }

@@ -1,6 +1,7 @@
 package com.sena.service;
 
 import com.sena.entity.UserEntity;
+import com.sena.model.EmailModel;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 
@@ -16,5 +17,5 @@ public interface AccountService {
 
     Result<String> createUser(UserResponse response);
 
-    Result<String> sendEmail();
+    Result<String> sendEmail(EmailModel emailModel);
 }

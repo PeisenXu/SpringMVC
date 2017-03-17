@@ -1,7 +1,11 @@
 package com.sena.service.impl;
 
+import com.microtripit.mandrillapp.lutung.view.MandrillMessage;
+import com.sena.message.MessageInfo;
 import com.sena.model.EmailModel;
+import com.sena.result.Result;
 import com.sena.service.EmailService;
+import com.sena.util.FileUtil;
 import com.sena.util.StringUtil;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +17,10 @@ import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.*;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.util.Date;
-import java.util.EmptyStackException;
-import java.util.Properties;
-import java.util.UUID;
+import java.io.FileInputStream;
+import java.util.*;
 
 /**
  * Created by Sena on 2017/3/16.
@@ -37,16 +40,21 @@ public class EmailServiceImpl implements EmailService {
     // 收件人邮箱（替换为自己知道的有效邮箱）
     public static String receiveMailAccount = "shadowred@foxmail.com";
 
+    public static String mailSuffix = "<br/><br/>------------------<br/>\n" +
+            "本邮件仅发给指定人员，邮件内容可能涉及保密信息，如果误发贵处请邮件通知发件人并删除此邮件，任何形式的复制、转发或散布本邮件及其内容均属违法行为。。<br/>\n" +
+            "The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it...";
+
     @Override
-    public void sendEmail(EmailModel emailModel) {
+    public Result<String> sendEmail(EmailModel emailModel) {
         if (StringUtil.isNotEmptyOrBlank(emailModel.getTo())) {
             receiveMailAccount = emailModel.getTo();
         }
         try {
             this.postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
         } catch (Exception e) {
-            throw new EmptyStackException();
+            return Result.result(MessageInfo.SYSTEM_SEND_EMAIL_ERRO, "Send Email erro.");
         }
+        return Result.result(null);
     }
 
     private void postEmail(String subject, String messageHtml, String attachment, String attachmentName) throws Exception {
@@ -138,23 +146,31 @@ public class EmailServiceImpl implements EmailService {
 
         // 6. 添加邮件正文
         BodyPart contentPart = new MimeBodyPart();
-        contentPart.setContent(messageHtml, "text/html;charset=UTF-8");
-        multipart.addBodyPart(contentPart);
+        contentPart.setContent(messageHtml + mailSuffix, "text/html;charset=UTF-8");
+        multipart.addBodyPart(contentPart);        // 7. 添加附件内容
+        // 7. 添加附件
+        if (StringUtil.isNotEmptyOrBlank(attachment)) {
+            String path = FileUtil.randomTempFilePath(null);
+            FileUtil.makeDir(path);
+            String filePath = path + File.separator;
+            String fileName = UUID.randomUUID().toString() + FileUtil.getSuffix(attachmentName);
+            FileInputStream inputStream = FileUtil.downLoadFromUrl(attachment, fileName, filePath);
+            List<MandrillMessage.MessageContent> attachments = new ArrayList<>();
+            MandrillMessage.MessageContent messageContent = new MandrillMessage.MessageContent();
+            ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
+            int ch;
+            while ((ch = inputStream.read()) != -1) {
+                swapStream.write(ch);
+            }
+            inputStream.close();
+            BodyPart attachmentBodyPart = new MimeBodyPart();
+            DataSource source = new FileDataSource(filePath + fileName);
+            attachmentBodyPart.setDataHandler(new DataHandler(source));
 
-        // 7. 添加附件内容
-        // 项目的根目录路径
-        File directory = new File("");
-        String courseFile = directory.getCanonicalPath() ;
-        String uid = UUID.randomUUID().toString();
-        String path = courseFile + uid;
-        //TODO 下载到本地
-        BodyPart attachmentBodyPart = new MimeBodyPart();
-        DataSource source = new FileDataSource(attachment);
-        attachmentBodyPart.setDataHandler(new DataHandler(source));
-
-        // 8. MimeUtility.encodeWord可以避免文件名乱码
-        attachmentBodyPart.setFileName(MimeUtility.encodeWord(attachmentName));
-        multipart.addBodyPart(attachmentBodyPart);
+            // 8. MimeUtility.encodeWord可以避免文件名乱码
+            attachmentBodyPart.setFileName(MimeUtility.encodeWord(attachmentName));
+            multipart.addBodyPart(attachmentBodyPart);
+        }
 
         // 9. 将multipart对象放到message中
         message.setContent(multipart);

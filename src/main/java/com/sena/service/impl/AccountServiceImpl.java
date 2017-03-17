@@ -86,19 +86,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public Result<String> sendEmail() {
-        EmailModel emailModel = new EmailModel();
-        emailModel.setTo("75037664@qq.com");
-        emailModel.setMessageHtml("<br/><br/>------------------<br/>\n" +
-                "本邮件仅发给指定人员，邮件内容可能涉及保密信息，如果误发贵处请邮件通知发件人并删除此邮件，任何形式的复制、转发或散布本邮件及其内容均属违法行为。。<br/>\n" +
-                "The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it...");
-        //emailModel.setAttachment("http://china-sen.oss-me-east-1.aliyuncs.com/1.pdf");
-        emailModel.setAttachment("D:\\gitignore_global.txt");
-        emailModel.setAttachmentName("gitignore_global.txt");
-        emailModel.setSubject("Title");
+    public Result<String> sendEmail(EmailModel emailModel) {
+//        emailModel.setTo("75037664@qq.com");
+//        emailModel.setMessageHtml("http://china-sen.oss-me-east-1.aliyuncs.com/1.pdf");
+//        emailModel.setAttachment("http://china-sen.oss-me-east-1.aliyuncs.com/1.pdf");
+//        emailModel.setAttachmentName("gitignore_global.pdf");
+//        emailModel.setSubject("主题配置");
 
-        emailService.sendEmail(emailModel);
-        return Result.result(null);
+        return emailService.sendEmail(emailModel);
     }
 
 }

@@ -34,21 +34,18 @@
             </div>
             <br>
             <button id="reg-button" type="button" data-loading-text="Loading...." class="btn btn-primary"
-                    autocomplete="off" data-toggle="buttons">注册
+                    autocomplete="off" data-toggle="buttons">登陆
             </button>
         </form>
     </div>
 </div>
-
-<div id="myAlert" class="alert alert-warning">
-    <a href="#" class="close" data-dismiss="alert">&times;</a>
-    <strong>警告！</strong>您的网络连接有问题。
+<div id="erro_div">
 </div>
 <script>
     $(function () {
         $("#reg-button").on("click", function () {
             var that = $(this);
-            that.text(that.attr("data-loading-text"))
+//            that.text(that.attr("data-loading-text"))
             var username = $(".form-username").val();
             var password = $(".form-password").val();
             var formdata = {
@@ -63,17 +60,25 @@
                 dataType: "json",
                 success: function (date) {
                     if (date.code != 0) {
-                        alert(date.message);
+                        showMsg('错误！', date.message, 'alert-danger');
                     } else {
                         var obj = date.data;
-                        alert(obj.id);
+                        showMsg('登陆成功！', ',Id=' + obj.id, 'alert-success');
                     }
                 },
                 error: function (message) {
-                    $("#request-process-patent").html("提交数据失败！");
+                    showMsg('警告！', '网络连接异常', 'alert-warning');
                 }
             });
         })
+
+        var showMsg = function (title, msg, status) {
+            $("#myAlert").css('display', 'block');
+            $("#erro_div").empty();
+            $("#erro_div").append('<div id="myAlert" class="alert ' + status + '">' +
+                '<a href="#" class="close" data-dismiss="alert">&times;</a>' +
+                '<strong>' + title + '</strong>' + msg);
+        }
     })
 </script>
 
