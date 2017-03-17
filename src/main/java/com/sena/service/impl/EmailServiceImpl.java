@@ -7,7 +7,6 @@ import com.sena.result.Result;
 import com.sena.service.EmailService;
 import com.sena.util.FileUtil;
 import com.sena.util.StringUtil;
-import org.apache.regexp.RE;
 import org.springframework.stereotype.Service;
 
 import javax.activation.DataHandler;
@@ -37,7 +36,7 @@ public class EmailServiceImpl implements EmailService {
 
     // 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
     // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
-    public static String myEmailSMTPHost = "smtp.exmail.qq.com";
+    public static String myEmailSMTPHost = "smtp.qq.com";
 
     // 收件人邮箱（替换为自己知道的有效邮箱）
     public static String receiveMailAccount = "shadowred@foxmail.com";
