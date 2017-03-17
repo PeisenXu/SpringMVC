@@ -5,12 +5,14 @@ import com.sena.model.EmailModel;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
 import com.sena.service.AccountService;
+import com.sena.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,9 +35,11 @@ public class AccountController {
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/jsonHealthy", method = RequestMethod.GET)
     @ResponseBody
-    public Result<List<UserEntity>> jsonHealthy() {
+    public Result<String> jsonHealthy() {
+        Date a = TimeUtil.getNow();
         List<UserEntity> users = accountService.getAllUser();
-        return Result.result(users);
+        Date b = TimeUtil.getNow();
+        return Result.result((b.getTime() - a.getTime()) + "ms");
     }
 
     @ResponseStatus(value = HttpStatus.OK)
@@ -59,4 +63,5 @@ public class AccountController {
     public Result<String> sendEmail(@RequestBody EmailModel emailModel) {
         return accountService.sendEmail(emailModel);
     }
+
 }

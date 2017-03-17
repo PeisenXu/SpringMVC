@@ -7,6 +7,7 @@ import com.sena.result.Result;
 import com.sena.service.EmailService;
 import com.sena.util.FileUtil;
 import com.sena.util.StringUtil;
+import org.apache.regexp.RE;
 import org.springframework.stereotype.Service;
 
 import javax.activation.DataHandler;
@@ -56,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
         try {
             this.postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
         } catch (Exception e) {
-            return Result.result(MessageInfo.SYSTEM_SEND_EMAIL_ERRO, "Send Email erro.");
+            return Result.result(MessageInfo.SYSTEM_SEND_EMAIL_ERRO, "Please check the attachment address or input box content.");
         }
         return Result.result(null);
     }
@@ -150,7 +151,7 @@ public class EmailServiceImpl implements EmailService {
 
         // 6. 添加邮件正文
         BodyPart contentPart = new MimeBodyPart();
-        contentPart.setContent(MimeUtility.encodeWord(messageHtml + mailSuffix), "text/html;charset=UTF-8");
+        contentPart.setContent(messageHtml + mailSuffix, "text/html;charset=UTF-8");
         multipart.addBodyPart(contentPart);        // 7. 添加附件内容
         // 7. 添加附件
         if (StringUtil.isNotEmptyOrBlank(attachment)) {
