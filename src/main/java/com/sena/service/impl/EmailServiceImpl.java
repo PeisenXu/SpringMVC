@@ -150,7 +150,7 @@ public class EmailServiceImpl implements EmailService {
 
         // 6. 添加邮件正文
         BodyPart contentPart = new MimeBodyPart();
-        contentPart.setContent(messageHtml + mailSuffix, "text/html;charset=UTF-8");
+        contentPart.setContent(MimeUtility.encodeWord(messageHtml + mailSuffix), "text/html;charset=UTF-8");
         multipart.addBodyPart(contentPart);        // 7. 添加附件内容
         // 7. 添加附件
         if (StringUtil.isNotEmptyOrBlank(attachment)) {
