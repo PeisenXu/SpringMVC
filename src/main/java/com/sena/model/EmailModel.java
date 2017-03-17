@@ -4,11 +4,20 @@ package com.sena.model;
  * Created by Sena on 2017/3/16.
  */
 public class EmailModel {
+    private String userName;
     private String to;
     private String subject;
     private String messageHtml;
     private String attachment;
     private String attachmentName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getTo() {
         return to;

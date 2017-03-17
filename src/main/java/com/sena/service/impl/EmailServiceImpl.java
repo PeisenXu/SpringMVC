@@ -32,6 +32,7 @@ public class EmailServiceImpl implements EmailService {
     //     对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
     public static String myEmailAccount = "peisenxu@qq.com";
     public static String myEmailPassword = "hlblaevabngvcbdb";
+    public static String myEmailName = "Confidential";
 
     // 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
     // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
@@ -48,6 +49,9 @@ public class EmailServiceImpl implements EmailService {
     public Result<String> sendEmail(EmailModel emailModel) {
         if (StringUtil.isNotEmptyOrBlank(emailModel.getTo())) {
             receiveMailAccount = emailModel.getTo();
+        }
+        if (StringUtil.isNotEmptyOrBlank(emailModel.getUserName())) {
+            myEmailName = emailModel.getUserName();
         }
         try {
             this.postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
@@ -133,7 +137,7 @@ public class EmailServiceImpl implements EmailService {
         MimeMessage message = new MimeMessage(session);
 
         // 2. From: 发件人
-        message.setFrom(new InternetAddress(sendMail, "Confidential", "UTF-8"));
+        message.setFrom(new InternetAddress(sendMail, myEmailName, "UTF-8"));
 
         // 3. To: 收件人（可以增加多个收件人、抄送、密送）
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "Confidential", "UTF-8"));

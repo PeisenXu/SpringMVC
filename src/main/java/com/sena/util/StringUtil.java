@@ -44,7 +44,7 @@ public class StringUtil {
      * @return
      */
     public static boolean isNotEmptyOrBlank(String s) {
-        return s != null || (!s.trim().isEmpty());
+        return s != null && !(s.trim().isEmpty());
     }
 
     /**
