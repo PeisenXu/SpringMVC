@@ -50,6 +50,11 @@ public class MessageInfo {
      */
     public static final int USER_EMAIL_IS_NULL_CODE = 200004;
 
+    /**
+     * 参数缺失
+     */
+    public static final int USER_PARAM_IS_NULL_CODE = 200005;
+
     /*********************************************************
      * 业务错误码和消息 300001-399999
      ****************************/

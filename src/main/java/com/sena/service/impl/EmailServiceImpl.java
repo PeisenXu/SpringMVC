@@ -41,19 +41,29 @@ public class EmailServiceImpl implements EmailService {
     // 收件人邮箱（替换为自己知道的有效邮箱）
     public static String receiveMailAccount = "shadowred@foxmail.com";
 
-    public static String mailSuffix = "<br/><br/>------------------<br/>\n" +
-            "本邮件仅发给指定人员，邮件内容可能涉及保密信息，如果误发贵处请邮件通知发件人并删除此邮件，任何形式的复制、转发或散布本邮件及其内容均属违法行为。。<br/>\n" +
+    public static String mailSuffix = "<br/><br/>------------------<br/><br/>\n" +
             "The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it...";
 
     @Override
     public Result<String> sendEmail(EmailModel emailModel) {
-        if (StringUtil.isNotEmptyOrBlank(emailModel.getTo())) {
-            receiveMailAccount = emailModel.getTo();
+        if (StringUtil.isEmptyOrBlank(emailModel.getUserName())) {
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "发件人名字不能为空.");
         }
-        if (StringUtil.isNotEmptyOrBlank(emailModel.getUserName())) {
-            myEmailName = emailModel.getUserName();
+        if (StringUtil.isEmptyOrBlank(emailModel.getTo())) {
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "收件人邮箱不能为空.");
+        }
+        if (StringUtil.isEmptyOrBlank(emailModel.getSubject())) {
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "邮件主题为空.");
+        }
+        if (StringUtil.isEmptyOrBlank(emailModel.getMessageHtml())) {
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "邮件内容不能为空.");
+        }
+        if (StringUtil.isNotEmptyOrBlank(emailModel.getAttachment()) && StringUtil.isEmptyOrBlank(emailModel.getAttachmentName())) {
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "附件名字不能为空如(log.txt).");
         }
         try {
+            receiveMailAccount = emailModel.getTo();
+            myEmailName = emailModel.getUserName();
             this.postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
         } catch (Exception e) {
             return Result.result(MessageInfo.SYSTEM_SEND_EMAIL_ERRO, "Please check the attachment address or input box content.");
