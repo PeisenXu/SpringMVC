@@ -73,6 +73,12 @@
         <property name="suffix" value=".html"></property>
     </bean>
     <mvc:default-servlet-handler />
-    <mvc:annotation-driven />
-    <!-- Json处理 -->
+    <mvc:annotation-driven >
+        <!-- 消息转换器 -->
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes" value="text/html;charset=UTF-8"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 </beans>

@@ -47,19 +47,23 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public Result<String> sendEmail(EmailModel emailModel) {
         if (StringUtil.isEmptyOrBlank(emailModel.getUserName())) {
-            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "发件人名字不能为空.");
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Sender name cannot be empty.");
         }
         if (StringUtil.isEmptyOrBlank(emailModel.getTo())) {
-            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "收件人邮箱不能为空.");
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Recipient mailbox cannot be empty.");
         }
         if (StringUtil.isEmptyOrBlank(emailModel.getSubject())) {
-            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "邮件主题为空.");
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Message headers cannot be empty.");
         }
         if (StringUtil.isEmptyOrBlank(emailModel.getMessageHtml())) {
-            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "邮件内容不能为空.");
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Mail content cannot be empty.");
         }
         if (StringUtil.isNotEmptyOrBlank(emailModel.getAttachment()) && StringUtil.isEmptyOrBlank(emailModel.getAttachmentName())) {
-            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "附件名字不能为空如(log.txt).");
+            return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "The attachment name cannot be empty(AS: log.txt).");
+        } else if (StringUtil.isNotEmptyOrBlank(emailModel.getAttachment()) && StringUtil.isNotEmptyOrBlank(emailModel.getAttachmentName())) {
+            if (emailModel.getAttachmentName().indexOf(".") < 0) {
+                return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Attachment name format error(AS: log.txt).");
+            }
         }
         try {
             receiveMailAccount = emailModel.getTo();
@@ -161,7 +165,8 @@ public class EmailServiceImpl implements EmailService {
         // 6. 添加邮件正文
         BodyPart contentPart = new MimeBodyPart();
         contentPart.setContent(messageHtml + mailSuffix, "text/html;charset=UTF-8");
-        multipart.addBodyPart(contentPart);        // 7. 添加附件内容
+        multipart.addBodyPart(contentPart);
+
         // 7. 添加附件
         if (StringUtil.isNotEmptyOrBlank(attachment)) {
             String path = FileUtil.randomTempFilePath(null);
@@ -169,8 +174,6 @@ public class EmailServiceImpl implements EmailService {
             String filePath = path + File.separator;
             String fileName = UUID.randomUUID().toString() + FileUtil.getSuffix(attachmentName);
             FileInputStream inputStream = FileUtil.downLoadFromUrl(attachment, fileName, filePath);
-            List<MandrillMessage.MessageContent> attachments = new ArrayList<>();
-            MandrillMessage.MessageContent messageContent = new MandrillMessage.MessageContent();
             ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
             int ch;
             while ((ch = inputStream.read()) != -1) {
