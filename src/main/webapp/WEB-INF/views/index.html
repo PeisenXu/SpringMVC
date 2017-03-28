@@ -24,17 +24,17 @@
     <div class="reg_submit" style="padding: 100px 100px 10px;">
         <form class="bs-example bs-example-form" role="form">
             <div class="input-group">
-                <span class="input-group-addon">账号</span>
+                <span class="input-group-addon">Account </span>
                 <input type="text" class="form-username" placeholder="your account">
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-addon">密码</span>
+                <span class="input-group-addon">Password</span>
                 <input type="password" class="form-password" placeholder="your password">
             </div>
             <br>
             <button id="reg-button" type="button" data-loading-text="Loading...." class="btn btn-primary"
-                    autocomplete="off" data-toggle="buttons">登陆
+                    autocomplete="off" data-toggle="buttons">Submit
             </button>
         </form>
     </div>
@@ -60,14 +60,14 @@
                 dataType: "json",
                 success: function (date) {
                     if (date.code != 0) {
-                        showMsg('错误！', date.message, 'alert-danger');
+                        showMsg('Erro!', date.message, 'alert-danger');
                     } else {
                         var obj = date.data;
-                        showMsg('登陆成功！', ',Id=' + obj.id, 'alert-success');
+                        showMsg('Suuccess!', ',Id=' + obj.id, 'alert-success');
                     }
                 },
                 error: function (message) {
-                    showMsg('警告！', '网络连接异常', 'alert-warning');
+                    showMsg('Warning!', 'Network connection exception', 'alert-warning');
                 }
             });
         })
