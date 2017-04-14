@@ -12,6 +12,7 @@ public class AgentEntity {
     private String type;
     private String survivalTime;
     private Date createAtUtc;
+    private Date updateAtUtc;
 
     public int getId() {
         return id;
@@ -59,5 +60,13 @@ public class AgentEntity {
 
     public void setCreateAtUtc(Date createAtUtc) {
         this.createAtUtc = createAtUtc;
+    }
+
+    public Date getUpdateAtUtc() {
+        return updateAtUtc;
+    }
+
+    public void setUpdateAtUtc(Date updateAtUtc) {
+        this.updateAtUtc = updateAtUtc;
     }
 }
