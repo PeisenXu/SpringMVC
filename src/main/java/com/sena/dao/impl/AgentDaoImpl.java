@@ -38,7 +38,7 @@ public class AgentDaoImpl implements AgentDao {
         try {
             String sql = AgentMapper.SQL_SELECT_AGENT;
             if (start != null && end != null) {
-                sql = sql + " LIMIT" + start + "," + end;
+                sql = sql + " LIMIT " + start + "," + end;
             }
             return jdbcTemplate.query(sql, AgentMapper.AGENT_MAPPER);
         } catch (EmptyResultDataAccessException e) {
