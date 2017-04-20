@@ -35,6 +35,7 @@ public class AgentMapper {
         public AgentEntity mapRow(ResultSet rs, int i) throws SQLException {
             AgentEntity agent = new AgentEntity();
             agent.setId(rs.getInt(ID));
+            agent.setIp(rs.getString(IP));
             agent.setPort(rs.getString(PORT));
             agent.setType(rs.getString(TYPE));
             agent.setSurvivalTime(rs.getString(SURVIVALTIME));
