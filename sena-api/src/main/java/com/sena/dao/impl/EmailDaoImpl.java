@@ -24,6 +24,6 @@ public class EmailDaoImpl implements EmailDao{
 
     @Override
     public void updateEmailStatus(String id, String status) {
-        jdbcTemplate.update(EmailRecordMapper.SQL_UPDATE_ACCOUNT_EMAIL_STATUS, new Object[]{id, status});
+        jdbcTemplate.update(EmailRecordMapper.SQL_UPDATE_ACCOUNT_EMAIL_STATUS, new Object[]{status, id});
     }
 }
