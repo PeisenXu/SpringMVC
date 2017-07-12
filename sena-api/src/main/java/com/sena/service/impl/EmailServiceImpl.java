@@ -1,13 +1,17 @@
 package com.sena.service.impl;
 
 import com.microtripit.mandrillapp.lutung.view.MandrillMessage;
+import com.sena.dao.EmailDao;
+import com.sena.enums.EmailStatusType;
 import com.sena.message.MessageInfo;
 import com.sena.model.EmailModel;
 import com.sena.result.Result;
 import com.sena.service.EmailService;
 import com.sena.util.FileUtil;
 import com.sena.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -27,6 +31,9 @@ import java.util.*;
  */
 @Service
 public class EmailServiceImpl implements EmailService {
+    @Autowired
+    private EmailDao emailDao;
+
     // 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
     // PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
     //     对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
@@ -42,10 +49,11 @@ public class EmailServiceImpl implements EmailService {
     public static String receiveMailAccount = "shadowred@foxmail.com";
 
     public static String mailSuffix = "<br/><br/>------------------<br/><br/>\n" +
-            "The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it...";
+            "The information contained in this communication is intended solely for the use of the individual or entity to " +
+            "whom it is addressed and others authorized to receive it...";
 
     @Override
-    public Result<String> sendEmail(EmailModel emailModel) {
+    public Result<String> sendEmail(final EmailModel emailModel) {
         if (StringUtil.isEmptyOrBlank(emailModel.getUserName())) {
             return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Sender name cannot be empty.");
         }
@@ -65,11 +73,27 @@ public class EmailServiceImpl implements EmailService {
                 return Result.result(MessageInfo.USER_PARAM_IS_NULL_CODE, "Attachment name format error(AS: log.txt).");
             }
         }
+        myEmailName = emailModel.getUserName();
+        receiveMailAccount = emailModel.getTo();
+        final String emailId = UUID.randomUUID().toString();
+        emailDao.createEmailRecord(emailId, myEmailName, receiveMailAccount, emailModel.getAttachmentName(), emailModel.getAttachment(),
+                emailModel.getSubject(), emailModel.getMessageHtml(), EmailStatusType.CREATED.toString());
         try {
-            receiveMailAccount = emailModel.getTo();
-            myEmailName = emailModel.getUserName();
-            this.postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
+            Thread importThread = new Thread() {
+                @Transactional
+                @Override
+                public void run() {
+                    try {
+                        postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
+                        emailDao.updateEmailStatus(emailId, EmailStatusType.SUCCESS.toString());
+                    } catch (Exception e) {
+                        emailDao.updateEmailStatus(emailId, EmailStatusType.FAILED.toString());
+                    }
+                }
+            };
         } catch (Exception e) {
+            e.printStackTrace();
+            emailDao.updateEmailStatus(emailId, EmailStatusType.FAILED.toString());
             return Result.result(MessageInfo.SYSTEM_SEND_EMAIL_ERRO, "Please check the attachment address or input box content.");
         }
         return Result.result(null);

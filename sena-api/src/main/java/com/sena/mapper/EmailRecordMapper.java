@@ -23,6 +23,8 @@ public class EmailRecordMapper {
 
     //region Sql
     public static final String SQL_SELECT_GETUSER = "SELECT * FROM account_user";
+    public static final String SQL_INSERT_ACCOUNT_EMAIL = "INSERT INTO account_email (Id, SendUserName, Recipient, Subject, FileUrl, FileName, Message, Status, CreateAtUtc) VALUE (?,?,?,?,?,?,?,?,?)";
+    public static final String SQL_UPDATE_ACCOUNT_EMAIL_STATUS = "UPDATE account_email SET Status = ? WHERE Id = ?";
     //endregion
 
     //region mapper
