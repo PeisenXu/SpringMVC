@@ -91,6 +91,7 @@ public class EmailServiceImpl implements EmailService {
                     }
                 }
             };
+            importThread.start();
         } catch (Exception e) {
             e.printStackTrace();
             emailDao.updateEmailStatus(emailId, EmailStatusType.FAILED.toString());
