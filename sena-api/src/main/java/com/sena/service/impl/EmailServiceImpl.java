@@ -75,7 +75,7 @@ public class EmailServiceImpl implements EmailService {
         }
         myEmailName = emailModel.getUserName();
         receiveMailAccount = emailModel.getTo();
-        final String emailId = UUID.randomUUID().toString();
+        final String emailId = UUID.randomUUID().toString().toUpperCase();
         emailDao.createEmailRecord(emailId, myEmailName, receiveMailAccount, emailModel.getAttachmentName(), emailModel.getAttachment(),
                 emailModel.getSubject(), emailModel.getMessageHtml(), EmailStatusType.CREATED.toString());
         try {
