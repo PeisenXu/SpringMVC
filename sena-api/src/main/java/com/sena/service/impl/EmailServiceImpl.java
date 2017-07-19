@@ -87,6 +87,7 @@ public class EmailServiceImpl implements EmailService {
                         postEmail(emailModel.getSubject(), emailModel.getMessageHtml(), emailModel.getAttachment(), emailModel.getAttachmentName());
                         emailDao.updateEmailStatus(emailId, EmailStatusType.SUCCESS.toString());
                     } catch (Exception e) {
+                        e.printStackTrace();
                         emailDao.updateEmailStatus(emailId, EmailStatusType.FAILED.toString());
                     }
                 }
@@ -194,6 +195,9 @@ public class EmailServiceImpl implements EmailService {
 
         // 7. 添加附件
         if (StringUtil.isNotEmptyOrBlank(attachment)) {
+            if (attachment.indexOf("http://") < 0 || attachment.indexOf("https://") < 0) {
+                attachment = "http://" + attachment;
+            }
             String path = FileUtil.randomTempFilePath(null);
             FileUtil.makeDir(path);
             String filePath = path + File.separator;
