@@ -32,7 +32,7 @@ public class SpringAppConfig {
     ConfigurableEnvironment env;
 
     @Autowired
-    @Qualifier("dataSource")
+    @Qualifier("mysqlDataSource")
     DataSource dataSource;
 
     //default database,sql server
@@ -64,10 +64,10 @@ public class SpringAppConfig {
     @Bean(name = "mysqlDataSource")
     public DataSource getMysqlDataSource() {
         BoneCPDataSource ds = new BoneCPDataSource();
-        ds.setDriverClass(env.getProperty("mysqlds.driver.classname"));
-        ds.setJdbcUrl(env.getProperty("mysqlds.url"));
-        ds.setUsername(env.getProperty("mysqlds.username"));
-        ds.setPassword(env.getProperty("mysqlds.password"));
+        ds.setDriverClass(env.getProperty("jdbc.driverClassName"));
+        ds.setJdbcUrl(env.getProperty("jdbc.url"));
+        ds.setUsername(env.getProperty("jdbc.username"));
+        ds.setPassword(env.getProperty("jdbc.password"));
         ds.setIdleConnectionTestPeriodInMinutes(240);
         ds.setIdleMaxAgeInMinutes(60);
         ds.setMaxConnectionsPerPartition(10);
@@ -78,14 +78,14 @@ public class SpringAppConfig {
         return ds;
     }
 
-    @Bean(name = "dynamoDBMapper")
-    DynamoDBMapper dynamoDBMapper() {
-        AmazonDynamoDBClient client = new AmazonDynamoDBClient(
-                new AWSCredentialsProviderChain(new InstanceProfileCredentialsProvider(),
-                        new StaticCredentialsProvider(new BasicAWSCredentials(env.getProperty("aws.accessKey"), env.getProperty("aws.secretKey")))));
-        client.setRegion(Region.getRegion(Regions.US_WEST_1));
-        return new DynamoDBMapper(client);
-    }
+//    @Bean(name = "dynamoDBMapper")
+//    DynamoDBMapper dynamoDBMapper() {
+//        AmazonDynamoDBClient client = new AmazonDynamoDBClient(
+//                new AWSCredentialsProviderChain(new InstanceProfileCredentialsProvider(),
+//                        new StaticCredentialsProvider(new BasicAWSCredentials(env.getProperty("aws.accessKey"), env.getProperty("aws.secretKey")))));
+//        client.setRegion(Region.getRegion(Regions.US_WEST_1));
+//        return new DynamoDBMapper(client);
+//    }
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
