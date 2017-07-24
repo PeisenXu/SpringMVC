@@ -25,8 +25,8 @@ public class FileController {
 
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    @RequestMapping(value = "/ip", method = RequestMethod.GET, produces = {"text/html;charset=UTF-8"})
-    public String getIp(@RequestParam String ip) {
+    @RequestMapping(value = "/ip", method = RequestMethod.GET)
+    public Object getIp(@RequestParam String ip) {
         return fileService.getIp(ip);
     }
 }

@@ -3,6 +3,7 @@ package com.sena.service.impl;
 import com.sena.model.FileInfo;
 import com.sena.service.FileService;
 import com.sena.util.FileUtil;
+import com.sena.util.JsonUtil;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -22,10 +23,14 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String getIp(String ip) {
+    public Object getIp(String ip) {
         try {
-            String ak = "NHlwpVgqvW91kETp9zyvQqi0nEfesEcC";
-            URL url = new URL("http://api.map.baidu.com/highacciploc/v1?qcip=" + ip + "&qterm=pc&ak=" + ak + "&coord=bd09ll&extensions=3");
+            /** 百度高精API **/
+            //String ak = "NHlwpVgqvW91kETp9zyvQqi0nEfesEcC";
+            //URL url = new URL("http://api.map.baidu.com/highacciploc/v1?qcip=" + ip + "&qterm=pc&ak=" + ak + "&coord=bd09ll&extensions=3");
+            /** QQMap经纬度 **/
+            String key = "TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU";
+            URL url = new URL("https://apis.map.qq.com/ws/location/v1/ip?ip=" + ip + "&key=" + key);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //设置超时间为3秒
             conn.setConnectTimeout(20 * 1000);
@@ -40,11 +45,12 @@ public class FileServiceImpl implements FileService {
             BufferedReader in = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
             StringBuffer buffer = new StringBuffer();
             String line = "";
-            while ((line = in.readLine()) != null){
+            while ((line = in.readLine()) != null) {
                 buffer.append(line);
             }
             String str = buffer.toString();
-            return str;
+            Object object = JsonUtil.fromJson(str, Object.class);
+            return object;
         } catch (Exception e) {
             e.printStackTrace();
             return "";
