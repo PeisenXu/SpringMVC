@@ -55,6 +55,11 @@ public class MessageInfo {
      */
     public static final int USER_PARAM_IS_NULL_CODE = 200005;
 
+    /**
+     * 参数过大
+     */
+    public static final int USER_PARAM_IS_TOO_BIG = 200006;
+
     /*********************************************************
      * 业务错误码和消息 300001-399999
      ****************************/

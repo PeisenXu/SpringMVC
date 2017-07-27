@@ -1,6 +1,7 @@
 package com.sena.controller;
 
 import com.sena.entity.AgentEntity;
+import com.sena.message.MessageInfo;
 import com.sena.result.Result;
 import com.sena.service.AgentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class AgentController {
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value = "/agent", method = RequestMethod.GET)
     public Result<List<AgentEntity>> healthyCheck(@RequestParam(required = false) Integer start, @RequestParam(required = false) Integer end) {
+        if (end > 500) {
+            return Result.result(MessageInfo.USER_PARAM_IS_TOO_BIG, "You xiao zi Bie Tai Guo Fen.");
+        }
         List<AgentEntity> agentEntities = agentService.getAgents(start, end);
         return Result.result(agentEntities);
     }
