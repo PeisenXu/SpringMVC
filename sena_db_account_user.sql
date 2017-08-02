@@ -1,0 +1,1 @@
+INSERT INTO sena_db.account_user (UserName, HashPassword, Email, CreateDate, UpdateDate) VALUES ('admin', '3d25e98ff93fd07e8a5fa02edeb9b1e1', '75037664@qq.com', '2017-05-04 10:35:52', '2017-05-04 10:35:52');
