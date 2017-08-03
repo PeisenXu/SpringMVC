@@ -1,13 +1,13 @@
 package com.sena.config;
 
-import com.amazonaws.auth.AWSCredentialsProviderChain;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.InstanceProfileCredentialsProvider;
-import com.amazonaws.internal.StaticCredentialsProvider;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+//import com.amazonaws.auth.AWSCredentialsProviderChain;
+//import com.amazonaws.auth.BasicAWSCredentials;
+//import com.amazonaws.auth.InstanceProfileCredentialsProvider;
+//import com.amazonaws.internal.StaticCredentialsProvider;
+//import com.amazonaws.regions.Region;
+//import com.amazonaws.regions.Regions;
+//import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+//import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.whalin.MemCached.MemCachedClient;
 import com.whalin.MemCached.SockIOPool;

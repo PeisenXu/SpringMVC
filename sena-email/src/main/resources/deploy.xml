@@ -9,7 +9,7 @@
     </formats>
 
     <includeBaseDirectory>true</includeBaseDirectory>
-    <baseDirectory>sena_email</baseDirectory>
+    <baseDirectory>lg_dashboard_email</baseDirectory>
 
     <fileSets>
         <fileSet>
@@ -27,15 +27,6 @@
             <directory>src/main/lib</directory>
             <includes>
                 <include>*.jar</include>
-            </includes>
-            <directoryMode>755</directoryMode>
-            <fileMode>755</fileMode>
-        </fileSet>
-        <fileSet>
-            <outputDirectory>.</outputDirectory>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>*</include>
             </includes>
             <directoryMode>755</directoryMode>
             <fileMode>755</fileMode>

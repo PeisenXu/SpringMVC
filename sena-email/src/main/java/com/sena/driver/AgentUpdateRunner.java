@@ -1,15 +1,10 @@
 package com.sena.driver;
 
-import com.amazonaws.util.json.JSONObject;
-import com.amazonaws.util.json.JSONUtils;
 import com.sena.config.SpringAppConfig;
 import com.sena.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.BufferedReader;
@@ -60,12 +55,6 @@ public class AgentUpdateRunner {
 
             // Http Post处理
             RestTemplate restTemplate = new RestTemplate();
-//            HttpHeaders headers = new HttpHeaders();
-//            MediaType application = MediaType.parseMediaType("application/json; charset=UTF-8");
-//            headers.setContentType(application);
-//            headers.add("Accept", MediaType.APPLICATION_JSON.toString());
-//            JSONObject jsonObj = JSONUtils.toObject();
-//            HttpEntity<String> formEntity = new HttpEntity<String>(jsonObj.toString(), headers);
 
             StringBuffer buffer = new StringBuffer();
             String line = "";
@@ -94,11 +83,8 @@ public class AgentUpdateRunner {
                             break;
                         }
                     }
-                    //System.out.println(line);
                 }
-                // buffer.append(line);
             }
-            // String str = buffer.toString();
 
             logger.info("============Start=============");
             logger.info("==============================");

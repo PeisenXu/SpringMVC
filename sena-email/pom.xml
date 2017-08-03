@@ -42,7 +42,7 @@
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>src/resources/deploy.xml</descriptor>
+                                <descriptor>src/main/resources/deploy.xml</descriptor>
                             </descriptors>
                             <tarLongFileMode>gnu</tarLongFileMode>
                         </configuration>
