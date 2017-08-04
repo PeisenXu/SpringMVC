@@ -1,12 +1,17 @@
 package com.sena.service.impl;
 
+import com.sena.enums.SearchIpType;
 import com.sena.model.FileInfo;
 import com.sena.service.FileService;
 import com.sena.util.FileUtil;
+import com.sena.util.HttpUtil;
 import com.sena.util.JsonUtil;
+import com.sena.util.StringUtil;
+import org.apache.http.protocol.HTTP;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -23,14 +28,9 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public Object getIp(String ip) {
+    public Object getIp(String ip, String type) {
         try {
-            /** 百度高精API **/
-            //String ak = "NHlwpVgqvW91kETp9zyvQqi0nEfesEcC";
-            //URL url = new URL("http://api.map.baidu.com/highacciploc/v1?qcip=" + ip + "&qterm=pc&ak=" + ak + "&coord=bd09ll&extensions=3");
-            /** QQMap经纬度 **/
-            String key = "TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU";
-            URL url = new URL("https://apis.map.qq.com/ws/location/v1/ip?ip=" + ip + "&key=" + key);
+            URL url = this.getUrl(ip, type);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             //设置超时间为3秒
             conn.setConnectTimeout(20 * 1000);
@@ -54,6 +54,38 @@ public class FileServiceImpl implements FileService {
         } catch (Exception e) {
             e.printStackTrace();
             return "";
+        }
+    }
+
+    private URL getUrl(String ip, String type) throws Exception {
+        URL url;
+        if (StringUtil.isEmptyOrBlank(type)) {
+            String key = "TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU";
+            url = new URL("https://apis.map.qq.com/ws/location/v1/ip?ip=" + ip + "&key=" + key);
+        } else if (SearchIpType.BAIDU.toString().equalsIgnoreCase(type)) {
+            String ak = "UUv4OK3kHazq7HXgNdgojiD2Bq08lv8M"; // = "NHlwpVgqvW91kETp9zyvQqi0nEfesEcC";
+            //url = new URL("http://api.map.baidu.com/highacciploc/v1?qcip=" + ip + "&qterm=pc&ak=" + ak + "&coord=bd09ll&extensions=3");
+            url = new URL("http://api.map.baidu.com/location/ip?coor=bd09ll&ak=" + ak + "&ip=" + ip);
+        } else if (SearchIpType.QQ.toString().equalsIgnoreCase(type)) {
+            String key = "TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU";
+            url = new URL("https://apis.map.qq.com/ws/location/v1/ip?ip=" + ip + "&key=" + key);
+        } else if (SearchIpType.IP_API.toString().equalsIgnoreCase(type)) {
+            url = new URL("http://ip-api.com/json/?ip=" + ip);
+        } else {
+            String key = "TKUBZ-D24AF-GJ4JY-JDVM2-IBYKK-KEBCU";
+            url = new URL("https://apis.map.qq.com/ws/location/v1/ip?ip=" + ip + "&key=" + key);
+        }
+        return url;
+    }
+
+    public String postTest() {
+        String json = "";
+        try {
+            json = HttpUtil.sendPost("", JsonUtil.toJson(""), HTTP.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return json;
         }
     }
 }

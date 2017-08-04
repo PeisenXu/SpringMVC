@@ -8,5 +8,5 @@ import com.sena.model.FileInfo;
 public interface FileService {
     FileInfo getFile(String fileId);
 
-    Object getIp(String ip);
+    Object getIp(String ip, String type);
 }

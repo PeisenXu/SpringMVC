@@ -97,20 +97,4 @@ public class AccountServiceImpl implements AccountService {
         return emailService.sendEmail(emailModel);
     }
 
-    private String parseIp(HttpServletRequest headers){
-        String ip;
-        ip = headers.getHeader("X-Forwarded-For");
-        if (StringUtil.isEmptyOrBlank(ip))
-            ip = headers.getHeader("Proxy-Client-IP");
-        if (StringUtil.isEmptyOrBlank(ip))
-            ip = headers.getHeader("WL-Proxy-Client-IP");
-        if (StringUtil.isEmptyOrBlank(ip))
-            ip = headers.getHeader("HTTP_CLIENT_IP");
-        if (StringUtil.isEmptyOrBlank(ip))
-            ip = headers.getHeader("HTTP_X_FORWARDED_FOR");
-        if (StringUtil.isEmptyOrBlank(ip))
-            ip = headers.getRemoteAddr();
-        return ip;
-    }
-
 }
