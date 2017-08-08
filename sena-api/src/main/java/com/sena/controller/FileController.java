@@ -36,4 +36,11 @@ public class FileController {
         }
         return fileService.getIp(ip, type);
     }
+
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/check/ip", method = RequestMethod.GET)
+    public String checkIp(HttpServletRequest httpServletRequest) {
+        return HttpUtil.parseIp(httpServletRequest);
+    }
 }
