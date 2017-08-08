@@ -78,7 +78,7 @@ public class AgentUpdateRunner {
                         } else if (times == 5) {
                             times = 0;
                             String data = "ip=" + ip + "&port=" + port + "&type=" + type + "&survivalTime=" + survivalTime;
-                            restTemplate.postForObject("http://xupeisen.cn/api/v1/agent/agent.sena?" + data, null, String.class);
+                            restTemplate.postForObject("http://api.xupeisen.com/api/v1/agent/agent.sena?" + data, null, String.class);
                         } else {
                             break;
                         }

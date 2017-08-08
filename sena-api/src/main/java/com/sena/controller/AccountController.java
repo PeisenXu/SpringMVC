@@ -1,6 +1,7 @@
 package com.sena.controller;
 
 import com.sena.entity.UserEntity;
+import com.sena.message.MessageInfo;
 import com.sena.model.EmailModel;
 import com.sena.model.UserResponse;
 import com.sena.result.Result;
@@ -64,4 +65,24 @@ public class AccountController {
         return accountService.sendEmail(emailModel);
     }
 
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> error403(@RequestBody EmailModel emailModel) {
+        return Result.result(MessageInfo.INTERNAL_SERVER_ERROR, "403.");
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> error404(@RequestBody EmailModel emailModel) {
+        return Result.result(MessageInfo.INTERNAL_SERVER_ERROR, "404.");
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/500", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> error500(@RequestBody EmailModel emailModel) {
+        return Result.result(MessageInfo.INTERNAL_SERVER_ERROR, "500.");
+    }
 }

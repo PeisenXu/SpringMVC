@@ -60,6 +60,11 @@ public class MessageInfo {
      */
     public static final int USER_PARAM_IS_TOO_BIG = 200006;
 
+    /**
+     * INTERNAL_SERVER_ERROR
+     */
+    public static final int INTERNAL_SERVER_ERROR = 200007;
+
     /*********************************************************
      * 业务错误码和消息 300001-399999
      ****************************/
