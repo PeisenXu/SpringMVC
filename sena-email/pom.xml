@@ -7,12 +7,12 @@
 
     <name>email</name>
     <parent>
-        <groupId>Sen</groupId>
+        <groupId>com.sena</groupId>
         <artifactId>sena</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>Sen</groupId>
+    <groupId>com.sena.email</groupId>
     <artifactId>sena-email</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -59,6 +59,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.sena.api</groupId>
+            <artifactId>sena-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
             <groupId>log4j</groupId>

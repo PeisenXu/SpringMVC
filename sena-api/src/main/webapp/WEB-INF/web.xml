@@ -10,7 +10,7 @@
 
     <filter>
         <filter-name>CORS</filter-name>
-        <filter-class>com.sena.config.SimpleCORSFilter</filter-class>
+        <filter-class>com.api.config.SimpleCORSFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CORS</filter-name>

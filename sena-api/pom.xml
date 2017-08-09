@@ -7,11 +7,12 @@
 
     <name>api</name>
     <parent>
-        <groupId>Sen</groupId>
+        <groupId>com.sena</groupId>
         <artifactId>sena</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>Sen</groupId>
+
+    <groupId>com.sena.api</groupId>
     <artifactId>sena-api</artifactId>
     <version>1.0-SNAPSHOT</version>
 
