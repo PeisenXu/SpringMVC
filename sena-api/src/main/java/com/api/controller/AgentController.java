@@ -3,7 +3,7 @@ package com.api.controller;
 import com.api.message.MessageInfo;
 import com.api.result.Result;
 import com.api.service.AgentService;
-import com.api.entity.AgentEntity;
+import com.sena.dao.entity.AgentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

@@ -1,9 +1,9 @@
 package com.api.controller;
 
 import com.api.service.FileService;
-import com.api.model.FileInfo;
-import com.api.util.HttpUtil;
-import com.api.util.StringUtil;
+import com.sena.dao.model.FileInfo;
+import com.sena.dao.util.HttpUtil;
+import com.sena.dao.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

@@ -1,12 +1,12 @@
 package com.api.controller;
 
-import com.api.entity.UserEntity;
+import com.sena.dao.entity.UserEntity;
 import com.api.message.MessageInfo;
-import com.api.model.EmailModel;
-import com.api.model.UserResponse;
+import com.sena.dao.model.EmailModel;
+import com.sena.dao.model.UserResponse;
 import com.api.result.Result;
 import com.api.service.AccountService;
-import com.api.util.TimeUtil;
+import com.sena.dao.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

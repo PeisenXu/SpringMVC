@@ -1,14 +1,18 @@
-package com.api.service;
+package com.sena.dao;
 
-import com.sena.dao.entity.AgentEntity;
+import com.sena.entity.AgentEntity;
 
 import java.util.List;
 
 /**
  * Created by Sena on 2017/4/13.
  */
-public interface AgentService {
+public interface AgentDao {
     void createAgent(String ip, String port, String type, String survivalTime);
 
+    AgentEntity getAgentByIp(String ip);
+
     List<AgentEntity> getAgents(Integer start, Integer end);
+
+    void updateAgent(int id, String port, String type, String survivalTime);
 }
