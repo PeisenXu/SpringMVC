@@ -1,6 +1,6 @@
 package com.api.service;
 
-import com.sena.dao.entity.AgentEntity;
+import com.sena.entity.AgentEntity;
 
 import java.util.List;
 

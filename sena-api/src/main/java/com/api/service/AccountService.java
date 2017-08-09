@@ -1,8 +1,8 @@
 package com.api.service;
 
-import com.sena.dao.entity.UserEntity;
-import com.sena.dao.model.EmailModel;
-import com.sena.dao.model.UserResponse;
+import com.sena.entity.UserEntity;
+import com.sena.model.EmailModel;
+import com.sena.model.UserResponse;
 import com.api.result.Result;
 
 import java.util.List;

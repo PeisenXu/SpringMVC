@@ -1,13 +1,13 @@
 package com.api.service.impl;
 
-import com.sena.dao.dao.EmailDao;
-import com.sena.dao.enums.EmailStatusType;
+import com.sena.dao.EmailDao;
+import com.sena.enums.EmailStatusType;
 import com.api.message.MessageInfo;
-import com.sena.dao.model.EmailModel;
+import com.sena.model.EmailModel;
 import com.api.result.Result;
 import com.api.service.EmailService;
-import com.sena.dao.util.FileUtil;
-import com.sena.dao.util.StringUtil;
+import com.sena.util.FileUtil;
+import com.sena.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,6 @@
 package com.api.service;
 
-import com.sena.dao.model.FileInfo;
+import com.sena.model.FileInfo;
 
 /**
  * Created by Sena on 2017-07-18.

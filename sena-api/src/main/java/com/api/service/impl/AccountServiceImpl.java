@@ -1,17 +1,17 @@
 package com.api.service.impl;
 
 import com.api.message.MessageInfo;
-import com.sena.dao.model.UserResponse;
+import com.sena.model.UserResponse;
 import com.api.result.Result;
-import com.sena.dao.dao.AccountDao;
-import com.sena.dao.entity.UserEntity;
+import com.sena.dao.AccountDao;
+import com.sena.entity.UserEntity;
 import com.sena.exception.system.Md5CanNotCreateException;
 import com.sena.exception.user.UserRegisterException;
-import com.sena.dao.model.EmailModel;
+import com.sena.model.EmailModel;
 import com.api.service.AccountService;
 import com.api.service.EmailService;
-import com.sena.dao.util.MD5;
-import com.sena.dao.util.StringUtil;
+import com.sena.util.MD5;
+import com.sena.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
 package com.api.service.impl;
 
-import com.sena.dao.enums.SearchIpType;
+import com.sena.enums.SearchIpType;
 import com.api.service.FileService;
-import com.sena.dao.util.HttpUtil;
-import com.sena.dao.util.JsonUtil;
-import com.sena.dao.model.FileInfo;
-import com.sena.dao.util.StringUtil;
+import com.sena.util.HttpUtil;
+import com.sena.util.JsonUtil;
+import com.sena.model.FileInfo;
+import com.sena.util.StringUtil;
 import org.apache.http.protocol.HTTP;
 import org.springframework.stereotype.Service;
 
