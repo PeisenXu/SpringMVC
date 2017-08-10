@@ -54,6 +54,5 @@ gradle/
 gradlew
 gradlew.bat
 unused.txt
-sena-email/target/sena-email-1.0-SNAPSHOT.jar
-sena-email/target/sena-email-1.0-SNAPSHOT-jar-with-dependencies.jar
-sena-email/target/sena-email-1.0-SNAPSHOT-deploy.tar.gz
+sena-common/target/
+sena-email/target/
