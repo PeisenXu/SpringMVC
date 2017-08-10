@@ -8,6 +8,7 @@ package com.email.config;
 //import com.amazonaws.regions.Regions;
 //import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 //import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+
 import com.jolbox.bonecp.BoneCPDataSource;
 import com.whalin.MemCached.MemCachedClient;
 import com.whalin.MemCached.SockIOPool;
@@ -25,7 +26,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:service.properties")
-@ComponentScan({"com.email", "com.api"})
+@ComponentScan({"com.email.driver", "com.api.controller", "com.api.service", "com.common.dao"})
 public class SpringAppConfig {
 
     @Autowired

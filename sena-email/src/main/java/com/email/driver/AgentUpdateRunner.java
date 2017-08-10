@@ -24,7 +24,9 @@ public class AgentUpdateRunner {
     public static void main(String[] args) throws Exception {
         ctx = new AnnotationConfigApplicationContext(SpringAppConfig.class);
         agentService = ctx.getBean(AgentService.class);
-        System.out.println("============Start=============");
+        logger.info("============Info=============");
+        logger.error("============Error=============");
+        logger.debug("============Debug=============");
         run();
     }
 
