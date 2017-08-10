@@ -1,5 +1,7 @@
 package com.email.driver;
 
+import com.common.dao.AgentDao;
+import com.common.entity.AgentEntity;
 import com.common.util.StringUtil;
 import com.email.config.SpringAppConfig;
 import com.api.service.AgentService;
@@ -19,11 +21,11 @@ import java.util.regex.Pattern;
 public class AgentUpdateRunner {
     private static Logger logger = LoggerFactory.getLogger(AgentUpdateRunner.class);
     private static AnnotationConfigApplicationContext ctx;
-    private static AgentService agentService;
+    private static AgentDao agentDao;
 
     public static void main(String[] args) throws Exception {
         ctx = new AnnotationConfigApplicationContext(SpringAppConfig.class);
-        agentService = ctx.getBean(AgentService.class);
+        agentDao = ctx.getBean(AgentDao.class);
         logger.info("============Info=============");
         logger.error("============Error=============");
         logger.debug("============Debug=============");
@@ -77,7 +79,12 @@ public class AgentUpdateRunner {
                         } else if (times == 5) {
                             // 如果其中一个为空则就跳过
                             if (StringUtil.isNotEmptyOrBlank(ip) && StringUtil.isNotEmptyOrBlank(port) && StringUtil.isNotEmptyOrBlank(type) && StringUtil.isNotEmptyOrBlank(survivalTime)) {
-                                agentService.createAgent(ip, port, type, survivalTime);
+                                AgentEntity agent = agentDao.getAgentByIp(ip);
+                                if (agent == null) {
+                                    agentDao.createAgent(ip, port, type, survivalTime);
+                                } else {
+                                    agentDao.updateAgent(agent.getId(), port, type, survivalTime);
+                                }
                             }
                             times = 0;
 //                            String data = "ip=" + ip + "&port=" + port + "&type=" + type + "&survivalTime=" + survivalTime;

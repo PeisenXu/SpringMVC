@@ -14,7 +14,7 @@
     <fileSets>
         <fileSet>
             <outputDirectory>.</outputDirectory>
-            <directory>src1/main/resources</directory>
+            <directory>src/main/resources</directory>
             <includes>
                 <include>*.sh</include>
                 <include>*.properties</include>
@@ -24,7 +24,7 @@
         </fileSet>
         <fileSet>
             <outputDirectory>.</outputDirectory>
-            <directory>src1/main/lib</directory>
+            <directory>src/main/lib</directory>
             <includes>
                 <include>*.jar</include>
             </includes>
