@@ -1,9 +1,9 @@
-package com.sena.dao.dao.impl;
+package com.sena.dao.impl;
 
-import com.sena.dao.dao.AgentDao;
-import com.sena.dao.entity.AgentEntity;
-import com.sena.dao.mapper.AgentMapper;
-import com.sena.dao.util.TimeUtil;
+import com.sena.dao.AgentDao;
+import com.sena.entity.AgentEntity;
+import com.sena.mapper.AgentMapper;
+import com.sena.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

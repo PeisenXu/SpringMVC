@@ -1,10 +1,10 @@
-package com.sena.dao.dao.impl;
+package com.sena.dao.impl;
 
-import com.sena.dao.dao.AccountDao;
-import com.sena.dao.entity.UserEntity;
+import com.sena.dao.AccountDao;
+import com.sena.entity.UserEntity;
 import com.sena.exception.user.UserRegisterException;
-import com.sena.dao.mapper.AccountUserMapper;
-import com.sena.dao.util.TimeUtil;
+import com.sena.mapper.AccountUserMapper;
+import com.sena.util.TimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

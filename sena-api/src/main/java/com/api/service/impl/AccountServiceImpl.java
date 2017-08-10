@@ -67,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
             return Result.result(MessageInfo.USER_PASSWORD_IS_NULL_CODE, "Please input a password.");
         }
         if (StringUtil.isEmptyOrBlank(response.getEmail())) {
-            return Result.result(MessageInfo.USER_EMAIL_IS_NULL_CODE, "Please input a email.");
+            return Result.result(MessageInfo.USER_EMAIL_IS_NULL_CODE, "Please input a sena.");
         }
         //MD5加密密码
         String hashPassword = "";

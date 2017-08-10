@@ -1,4 +1,4 @@
-package com.email.config;
+package com.sena.config;
 
 //import com.amazonaws.auth.AWSCredentialsProviderChain;
 //import com.amazonaws.auth.BasicAWSCredentials;
@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:service.properties")
-@ComponentScan({"com.email", "com.api"})
+@ComponentScan({"com.sena", "com.api"})
 public class SpringAppConfig {
 
     @Autowired

@@ -1,8 +1,8 @@
-package com.sena.dao.dao.impl;
+package com.sena.dao.impl;
 
-import com.sena.dao.dao.EmailDao;
-import com.sena.dao.util.TimeUtil;
-import com.sena.dao.mapper.EmailRecordMapper;
+import com.sena.dao.EmailDao;
+import com.sena.util.TimeUtil;
+import com.sena.mapper.EmailRecordMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
