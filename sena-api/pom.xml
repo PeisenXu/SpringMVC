@@ -169,21 +169,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.mandrillapp.wrapper.lutung</groupId>
-            <artifactId>lutung</artifactId>
-            <version>${mandrill.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.3.4</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.datadoghq</groupId>
-            <artifactId>java-dogstatsd-client</artifactId>
-            <version>2.2</version>
         </dependency>
 
         <dependency>

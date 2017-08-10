@@ -196,11 +196,5 @@
             <artifactId>opencsv</artifactId>
             <version>3.7</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.mandrillapp.wrapper.lutung</groupId>
-            <artifactId>lutung</artifactId>
-            <version>${mandrill.version}</version>
-        </dependency>
     </dependencies>
 </project>
