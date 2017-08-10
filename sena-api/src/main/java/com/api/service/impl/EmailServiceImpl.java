@@ -1,13 +1,13 @@
 package com.api.service.impl;
 
-import com.sena.dao.EmailDao;
-import com.sena.enums.EmailStatusType;
+import com.common.dao.EmailDao;
+import com.common.enums.EmailStatusType;
 import com.api.message.MessageInfo;
-import com.sena.model.EmailModel;
+import com.common.model.EmailModel;
 import com.api.result.Result;
 import com.api.service.EmailService;
-import com.sena.util.FileUtil;
-import com.sena.util.StringUtil;
+import com.common.util.FileUtil;
+import com.common.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +36,7 @@ public class EmailServiceImpl implements EmailService {
     // 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
     // PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
     //     对于开启了独立密码的邮箱, 这里的邮箱密码必需使用这个独立密码（授权码）。
-    public static String myEmailAccount = "sena.prompt@foxmail.com";
+    public static String myEmailAccount = "email.prompt@foxmail.com";
     public static String myEmailPassword = "pviddftxnfcebhae";
     public static String myEmailName = "Confidential";
 

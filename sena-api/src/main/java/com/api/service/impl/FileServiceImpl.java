@@ -1,11 +1,11 @@
 package com.api.service.impl;
 
-import com.sena.enums.SearchIpType;
+import com.common.enums.SearchIpType;
 import com.api.service.FileService;
-import com.sena.util.HttpUtil;
-import com.sena.util.JsonUtil;
-import com.sena.model.FileInfo;
-import com.sena.util.StringUtil;
+import com.common.util.HttpUtil;
+import com.common.util.JsonUtil;
+import com.common.model.FileInfo;
+import com.common.util.StringUtil;
 import org.apache.http.protocol.HTTP;
 import org.springframework.stereotype.Service;
 

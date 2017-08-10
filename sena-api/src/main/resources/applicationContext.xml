@@ -16,7 +16,7 @@
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
     <context:component-scan base-package="com.api.controller"></context:component-scan>
     <context:component-scan base-package="com.api.service"></context:component-scan>
-    <context:component-scan base-package="com.sena.dao.dao"></context:component-scan>
+    <context:component-scan base-package="com.email.dao.dao"></context:component-scan>
 
     <!-- 配置数据源 -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">

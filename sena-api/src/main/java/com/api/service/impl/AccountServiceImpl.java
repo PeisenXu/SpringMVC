@@ -1,17 +1,17 @@
 package com.api.service.impl;
 
 import com.api.message.MessageInfo;
-import com.sena.model.UserResponse;
+import com.common.model.UserResponse;
 import com.api.result.Result;
-import com.sena.dao.AccountDao;
-import com.sena.entity.UserEntity;
-import com.sena.exception.system.Md5CanNotCreateException;
-import com.sena.exception.user.UserRegisterException;
-import com.sena.model.EmailModel;
+import com.common.dao.AccountDao;
+import com.common.entity.UserEntity;
+import com.common.exception.system.Md5CanNotCreateException;
+import com.common.exception.user.UserRegisterException;
+import com.common.model.EmailModel;
 import com.api.service.AccountService;
 import com.api.service.EmailService;
-import com.sena.util.MD5;
-import com.sena.util.StringUtil;
+import com.common.util.MD5;
+import com.common.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -67,7 +67,7 @@ public class AccountServiceImpl implements AccountService {
             return Result.result(MessageInfo.USER_PASSWORD_IS_NULL_CODE, "Please input a password.");
         }
         if (StringUtil.isEmptyOrBlank(response.getEmail())) {
-            return Result.result(MessageInfo.USER_EMAIL_IS_NULL_CODE, "Please input a sena.");
+            return Result.result(MessageInfo.USER_EMAIL_IS_NULL_CODE, "Please input a email.");
         }
         //MD5加密密码
         String hashPassword = "";

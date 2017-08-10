@@ -1,7 +1,7 @@
 package com.api.service;
 
 import com.api.result.Result;
-import com.sena.model.EmailModel;
+import com.common.model.EmailModel;
 
 /**
  * Created by Sena on 2017/3/16.

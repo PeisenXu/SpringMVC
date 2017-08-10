@@ -1,8 +1,8 @@
 package com.api.service.impl;
 
 import com.api.service.AgentService;
-import com.sena.dao.AgentDao;
-import com.sena.entity.AgentEntity;
+import com.common.dao.AgentDao;
+import com.common.entity.AgentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

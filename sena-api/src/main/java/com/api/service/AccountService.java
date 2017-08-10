@@ -1,8 +1,8 @@
 package com.api.service;
 
-import com.sena.entity.UserEntity;
-import com.sena.model.EmailModel;
-import com.sena.model.UserResponse;
+import com.common.entity.UserEntity;
+import com.common.model.EmailModel;
+import com.common.model.UserResponse;
 import com.api.result.Result;
 
 import java.util.List;

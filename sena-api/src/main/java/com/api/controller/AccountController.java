@@ -1,12 +1,12 @@
 package com.api.controller;
 
-import com.sena.entity.UserEntity;
+import com.common.entity.UserEntity;
 import com.api.message.MessageInfo;
-import com.sena.model.EmailModel;
-import com.sena.model.UserResponse;
+import com.common.model.EmailModel;
+import com.common.model.UserResponse;
 import com.api.result.Result;
 import com.api.service.AccountService;
-import com.sena.util.TimeUtil;
+import com.common.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
