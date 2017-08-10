@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:service.properties")
-@ComponentScan({"com.email.driver", "com.api.controller", "com.api.service", "com.common.dao"})
+@ComponentScan({"com.email", "com.api", "com.common"})
 public class SpringAppConfig {
 
     @Autowired
