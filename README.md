@@ -6,13 +6,13 @@ This README would normally document whatever steps are necessary to get your app
 
 * Quick summary
 * Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* [Learn Markdown](https://xupeisen.com)
 
 ### How do I get set up? ###
 
 * Summary of set up
 * Configuration
-* Dependencies
+* Dependencies JDK1.7,MVN3.9
 * Database configuration
 * How to run tests
 * Deployment instructions
@@ -25,5 +25,5 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Repo owner or admin  :  mail : admin@xupeisen.com
+* Other community or team contact 
