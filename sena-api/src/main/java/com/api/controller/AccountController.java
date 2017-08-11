@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by Sena on 2017/2/28.
@@ -84,5 +85,12 @@ public class AccountController {
     @ResponseBody
     public Result<String> error500(@RequestBody EmailModel emailModel) {
         return Result.result(MessageInfo.INTERNAL_SERVER_ERROR, "500.");
+    }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/uuid", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> getUUID() {
+        return Result.result(UUID.randomUUID().toString().toUpperCase());
     }
 }

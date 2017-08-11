@@ -65,6 +65,11 @@ public class MessageInfo {
      */
     public static final int USER_PARAM_IS_TOO_BIG = 200006;
 
+    /**
+     * 参数未找到
+     */
+    public static final int USER_PARAM_IS_NOT_FOUND = 200007;
+
     /*********************************************************
      * 业务错误码和消息 300001-399999
      ****************************/
