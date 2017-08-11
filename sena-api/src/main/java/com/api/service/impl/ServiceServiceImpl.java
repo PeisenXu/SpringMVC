@@ -20,7 +20,11 @@ public class ServiceServiceImpl implements ServiceService {
         if (StringUtil.isEmptyOrBlank(uuid)) {
             return Result.result(MessageInfo.USER_PARAM_IS_NOT_FOUND, "Uid not found.");
         }
-        return Result.result(serviceDao.getServiceByUId(uuid));
+        ServiceEntity service = serviceDao.getServiceByUId(uuid);
+        if (service != null) {
+            serviceDao.updateServiceStatus(service.getId());
+        }
+        return Result.result(service);
     }
 
     @Override
