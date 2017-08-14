@@ -28,4 +28,10 @@ public class ServiceController {
         serviceService.createService(uId, type, data, failure);
     }
 
+    @ResponseStatus(value = HttpStatus.OK)
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @ResponseBody
+    public ServiceEntity getService() {
+        return serviceService.getServiceAAA();
+    }
 }

@@ -35,4 +35,10 @@ public class ServiceServiceImpl implements ServiceService {
         }
         serviceDao.createService(uuid, type, TimeUtil.getUtcNow(), data, failure);
     }
+
+    @Override
+    public ServiceEntity getServiceAAA() {
+        ServiceEntity service = serviceDao.getServiceByUId("AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA");
+        return service;
+    }
 }
